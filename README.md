@@ -97,7 +97,8 @@ Zie folderstructuur hieronder
    wordt gebruikt bij opstarten van mongo als service   
 
 ##### scripts
- * specifieke meteor deployement als service starten   
+ * specifieke meteor deployment als service starten   
+    
    *nssm-install-meteor-service.bat*   
    start C:\Programs\nssm-2.24\win64\nssm.exe install en vul onderdelen in zoals in het bat bestand aangegeven.   
 	
@@ -118,6 +119,12 @@ Zie folderstructuur hieronder
 	kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
 	start de service en ga met een browser naar http://localhost:METEOR_PORT   
 	
+	N.B.   
+	**Waarschuwing**   
+	In deze opzet werkt het nog niet als de service onder het LocalSystem account wordt gestart  
+	Oplossing (nog niet getest):   
+	kopieer C:\Users\geoideadmin\AppData\Local\.meteor\* naar C:\Programs\meteor\ en zet dit pad in PATH voor alle gebruikers.   
+	 
 
 #### build / deploy / run cyclus
 ##### Algemeen
@@ -130,8 +137,9 @@ Zie folderstructuur hieronder
    gebruik een tag als "0.0.0"   	
          
 ##### deploy  (TEST/ACC/PROD)   
-   
-   Stop de service geoide-admin-SERVICE
+   Een nieuwe release neerzetten voor een bestaande service.   
+      
+   Stop de service geoide-admin-SERVICE  
    
    Maak folder C:\geoide-admin\deployment\SERVICE\ leeg   
    
