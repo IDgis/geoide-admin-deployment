@@ -111,7 +111,7 @@ Zie folderstructuur hieronder
 	*Details\display name* e.g. geoide-admin-TEST   
 	*Details\description*   
 	*Startup type* e.g. manual   
-	*Login\Log* on as the User that installed meteor   
+	*Login\Log on* the User that installed meteor, LocalSystem does not work (see below)   
 	*IO\Output stdout* choose C:\geoide-admin\logs\TEST\out.log   
 	*IO\Error stderr* choose C:\geoide-admin\logs\TEST\err.log   
     
