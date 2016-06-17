@@ -12,7 +12,7 @@ Conventie voor naamgeving
     bijv: geoide-admin-*test* geoide-admin-*klant1*      
   
   Github release artifact:       
-    geoide-admin-*TAG*.tar.gz   
+    geoide-admin-*TAG*.zip   
 
 ### Development machine DEV
 
@@ -22,7 +22,7 @@ Conventie voor naamgeving
 #### Voorbereiding
 Voor de volgende onderdelen dienen folders aangemaakt te worden.  
     *Mongo data en logs*  
-    *Windwos service manager*   
+    *Windows service manager*   
  	*Geoide-admin deployment*  
 
 Zie folderstructuur hieronder  
@@ -33,9 +33,11 @@ Zie folderstructuur hieronder
  Volg instructies voor Windwos.  
  Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
  C:\Users\geoideadmin\AppData\Local\.meteor\meteor.bat   
+ meteor.bat wordt gebruikt om applicatie op te starten in een node js omgeving en te verbinden met een Mongo database.   
    
  * mongoDB - NoSQL database systeem   
  https://www.mongodb.com/download-center#community       
+ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
  Download msi for version 2.x.x (2.6.12) for Windows server R2   
  Full installation     
  maak een mongoDB service als volgt   
@@ -50,13 +52,6 @@ Zie folderstructuur hieronder
    Bekijk nssm-install-meteor-service.bat voor instructies   
  
 #### Folder structuur na voorbereiding en installatie
- 
-*meteor runtime omgeving*   
-C:\Users\USER\AppData\Local\.meteor   
-meteor.bat wordt gebruikt om applicatie op te starten in een node js omgeving en te verbinden met een Mongo database.   
-
-*Mongo database applicatie*   
-Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
     
     C:\Program Files   
      |-- MongoDB 2.6 Standard 
@@ -106,13 +101,13 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
    *nssm-install-meteor-service.bat*   
    start C:\Programs\nssm-2.24\win64\nssm.exe install en vul onderdelen in zoals in het bat bestand aangegeven.   
 	
-   gebruik     
+   gebruik (TEST is voorbeeld naam voor omgeving of klant)    
 	*Application\Path* the path of the nssm-install-meteor-service.bat script   
 	*Application\startup directory* meteor build e.g. C:\geoide-admin\deployment\TEST\   
-	*Application\service name* e.g. geoide-admin-test   
-	*Application\Arguments* METEOR_PORT_  MONGO_DB_NAME_  < <empty> | MONGO_PORT_NR >   
-	  e.g. 3010 geoide-admin-test  27017   
-	*Details\display name* e.g. geoide-admin-test   
+	*Application\service name* e.g. geoide-admin-TEST   
+	*Application\Arguments* METEOR_PORT_  MONGO_DB_NAME_  (MONGO_PORT_NR default 27017)   
+	  e.g. 3010 geoide-admin-TEST    
+	*Details\display name* e.g. geoide-admin-TEST   
 	*Details\description*   
 	*Startup type* e.g. manual   
 	*Login\Log* on as the User that installed meteor   
@@ -131,8 +126,8 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
 
 ##### build (DEV)    
 
-	Maak een release in github,    
-	gebruik een tag als "0.0.0"   	
+   Maak een release in github,    
+   gebruik een tag als "0.0.0"   	
          
 ##### deploy  (TEST/ACC/PROD)   
    
@@ -149,6 +144,7 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
    De lege folder blijft staan   
    
   In deployment folder structuur:   
+  
 	   C:\geoide-admin
 	     |
 	     |-- deployment 
@@ -169,7 +165,7 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
   
    meteor als service uitvoeren, dit is mogelijk met nssm en script "nssm-install-meteor-service.bat".   
    
-   dit is eenmalig uit te voeren: voor elke omgeving of klant een service   
+   dit is eenmalig uit te voeren voor elke omgeving of klant    
    
    daarna kan de service gestopt of gestart worden op de standaard Windows wijze    
    

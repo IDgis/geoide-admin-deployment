@@ -11,13 +11,13 @@ rem https://nssm.cc/
 rem nssm install (starts GUI with Admin rights)
 rem Application\Path this script
 rem Application\startup directory meteor build e.g. C:\geoide-admin\deployment\TEST\
-rem Application\service name e.g. geoide-admin-test
-rem Application\Arguments: METEOR_PORT_  MONGO_DB_NAME_  < <empty> | MONGO_PORT_NR >
-rem   e.g. 3010 geoide-admin-test  27017
+rem Application\service name e.g. geoide-admin-TEST
+rem Application\Arguments: METEOR_PORT_  MONGO_DB_NAME_  
+rem   e.g. 3010 geoide-admin-TEST  
 set METEOR_PORT_=%1
 set MONGO_DB_NAME_=%2
 set MONGO_PORT_=27017
-rem Details\display name e.g. geoide-admin-test
+rem Details\display name e.g. geoide-admin-TEST
 rem Details\description
 rem Startup type e.g. manual
 rem Login\Log on as the User that installed meteor
