@@ -13,14 +13,14 @@ rem Application\Path this script
 rem Application\startup directory meteor build e.g. C:\geoide-admin\deployment\TEST\
 rem Application\service name e.g. geoide-admin-test
 rem Application\Arguments: METEOR_PORT_  MONGO_DB_NAME_  < <empty> | MONGO_PORT_NR >
-rem   e.g. 3010 geoide-admin 27017
+rem   e.g. 3010 geoide-admin-test  27017
 set METEOR_PORT_=%1
 set MONGO_DB_NAME_=%2
 set MONGO_PORT_=27017
 rem Details\display name e.g. geoide-admin-test
 rem Details\description
 rem Startup type e.g. manual
-rem Login\Log on as Local System account (check if this works for meteor)
+rem Login\Log on as the User that installed meteor
 rem IO\Output stdout choose C:\geoide-admin\logs\TEST\out.log
 rem IO\Error stderr choose C:\geoide-admin\logs\TEST\err.log
 rem ^---^ NSSM ^---^
