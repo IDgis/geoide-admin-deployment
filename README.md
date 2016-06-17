@@ -43,12 +43,12 @@ Zie folderstructuur hieronder
  
 #### Folder structuur na voorbereiding en installatie
  
- 	*meteor runtime omgeving*   
- 	C:\Users\USER\AppData\Local\.meteor   
- 	meteor.bat wordt gebruikt om applicatie op te starten in een node js omgeving en te verbinden met een Mongo database.   
- 	
-    *Mongo database applicatie*   
-    Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
+*meteor runtime omgeving*   
+C:\Users\USER\AppData\Local\.meteor   
+meteor.bat wordt gebruikt om applicatie op te starten in een node js omgeving en te verbinden met een Mongo database.   
+
+*Mongo database applicatie*   
+Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
     
     C:\Program Files   
      |-- MongoDB 2.6 Standard 
