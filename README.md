@@ -7,9 +7,17 @@ Geoide admin is gebouwd met meteorjs.
 DEV - ontwikkel machine  
 TEST / ACC / PROD - test, acceptatie, productie machines  
 
+Conventie voor naamgeving   
+  Windows service: geoide-admin-SERVICE_NAAM       
+    bijv: geoide-admin-*test* geoide-admin-*klant1*      
+  
+  Github release artifact:       
+    geoide-admin-*TAG*.tar.gz   
+
 ### Development machine DEV
 
 ### Windows TEST/ACC/PROD doel machine
+
 
 #### Voorbereiding
 Voor de volgende onderdelen dienen folders aangemaakt te worden.  
@@ -98,53 +106,64 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
    *nssm-install-meteor-service.bat*   
    start C:\Programs\nssm-2.24\win64\nssm.exe install en vul onderdelen in zoals in het bat bestand aangegeven.   
 	
-    gebruik   
-  	TBD   
+   gebruik     
+	*Application\Path* the path of the nssm-install-meteor-service.bat script   
+	*Application\startup directory* meteor build e.g. C:\geoide-admin\deployment\TEST\   
+	*Application\service name* e.g. geoide-admin-test   
+	*Application\Arguments* METEOR_PORT_  MONGO_DB_NAME_  < <empty> | MONGO_PORT_NR >   
+	  e.g. 3010 geoide-admin-test  27017   
+	*Details\display name* e.g. geoide-admin-test   
+	*Details\description*   
+	*Startup type* e.g. manual   
+	*Login\Log* on as the User that installed meteor   
+	*IO\Output stdout* choose C:\geoide-admin\logs\TEST\out.log   
+	*IO\Error stderr* choose C:\geoide-admin\logs\TEST\err.log   
     
 	verificatie   
 	kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
 	start de service en ga met een browser naar http://localhost:METEOR_PORT   
 	
-   
- * build (DEV)    
-  *build-ga.bat*   
-  batch bestand om build voor juiste omgeving (TEST/ACC/PROD) te maken   
-  
-  gebruik:   
-  	TBD   
-    
- * deploy  (TEST/ACC/PROD)   
-   *deploy-ga.bat*   
-   batch bestand om zip file uit te pakken en voor TEST/ACC/PROD te 'installeren'    
-
-  gebruik:   
-  	TBD   
-    
 
 #### build / deploy / run cyclus
- * build    
- 
-   DEV> *build-ga.bat*   
-   meteor build <output-directory>   
-   resultaat: <output-directory>\geoide-admin.tar.gz   
-   rename als geoide-admin-TAGNR.tar.gz   
-   kopieer dit bestand naar de doel machine op C:\geoide-admin\deployment   
+##### Algemeen
+   SERVICE = als in geoide-admin-SERVICE (test, klant-1-acc, ...)    
+   TAG = als in geoide-admin-TAG.tar.gz (bijv. *0.0.0* in geoide-admin-0.0.0.tar.gz)   
+
+##### build (DEV)    
+
+	Maak een release in github,    
+	gebruik een tag als "0.0.0"   	
+         
+##### deploy  (TEST/ACC/PROD)   
    
-   !!  Dit werkt niet onder Windows !!   
-   Een bestand gemaakt met "meteor build" of "demeteorizer" is niet met 'node' of 'meteor' op te starten   
+   Stop de service geoide-admin-SERVICE
    
-   Dus zip de development code, zonder .git, .project, .settings, .meteor (??), node-modules (??)   
-      
- * deploy   
- 
-   kopieert de tar.gz file naar de doel folder op machine (TEST/ACC/PROD)   
+   Maak folder C:\geoide-admin\deployment\SERVICE\ leeg   
    
-   TEST>  *deploy-ga.bat* geoide-admin.tar.gz  TEST | ACC | PROD   
+   Download de gewenste release op https://github.com/IDgis/geoide-admin/releases  als zip bestand.   
+   Kopieer dit naar C:\geoide-admin\deployment      
+   Open het bestand met 7z (7zFM.exe)   
+   Extract de inhoud (folder geoide-admin-TAG) naar C:\geoide-admin\deployment\SERVICE\   
    
-   bijv. in C:\geoide-admin\deployment\TEST    
-   staat dan de meteor app om met de service te starten   
-   of in dos prompt met commando "meteor"   
+   Kopieer met Windows Explorer de *inhoud* van folder geoide-admin-TAG naar de parent folder C:\geoide-admin\deployment\SERVICE   
+   De lege folder blijft staan   
    
+  In deployment folder structuur:   
+	   C:\geoide-admin
+	     |
+	     |-- deployment 
+	          |  geoide-admin-*TAG*.tar.gz
+	          |
+	          |-- *SERVICE_NAAM* 
+	                 |
+	                 |-- geoide-admin-TAG\ 
+	                 |...
+
+  
+  Start de service geoide-admin-SERVICE   
+  
+  N.B.   
+  De folder(naam) geoide-admin-TAG kan gebruikt worden om de tag versie zichtbaar te maken in het beheer programma.   
     
  * run   
   
@@ -156,10 +175,12 @@ Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden
    
  * database  (TEST/ACC/PROD)   
  
-   backup / restore batch bestanden voor TEST/ACC/PROD    
+   backup / restore kan uitgevoerd worden met mongo commandos   
+     mongodump ...     
+     mongorestore ...     
+     
+       C:\Program Files\MongoDB 2.6 Standard\bin
    
-   
-
 ### Linux
 Meteor Up mupx.   
 
