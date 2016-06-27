@@ -111,7 +111,7 @@ Zie folderstructuur hieronder
 	*Details\display name* e.g. geoide-admin-TEST   
 	*Details\description*   
 	*Startup type* e.g. manual   
-	*Login\Log on* the User that installed meteor, LocalSystem does not work (see below)   
+	*Login\Log on* the User that installed meteor, LocalSystem does not work (see N.B. below)   
 	*IO\Output stdout* choose C:\geoide-admin\logs\TEST\out.log   
 	*IO\Error stderr* choose C:\geoide-admin\logs\TEST\err.log   
     
@@ -121,9 +121,9 @@ Zie folderstructuur hieronder
 	
 	N.B.   
 	**Waarschuwing**   
-	In deze opzet werkt het nog niet als de service onder het LocalSystem account wordt gestart  
-	Oplossing (nog niet getest):   
-	kopieer C:\Users\geoideadmin\AppData\Local\.meteor\* naar C:\Programs\meteor\ en zet dit pad in PATH voor alle gebruikers.   
+	Omdat meteor lokaal voor de ingelogde user wordt geinstalleerd, werkt het niet als de service onder het LocalSystem account wordt gestart  
+	Oplossing:   
+	Neem in de klant installatie handleiding op dat de service via nssm met hetzelfde account werkt als het account waarmee meteor werd geinstalleerd.    
 	 
 
 #### build / deploy / run cyclus
