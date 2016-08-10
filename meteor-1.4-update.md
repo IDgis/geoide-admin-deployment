@@ -8,7 +8,12 @@ Windows 10
 https://www.microsoft.com/en-us/download/details.aspx?id=48159
 * open administrator command terminal
 
+Voer een npm install uit:
+
+-----------------------------------------------
 ``C:\WINDOWS\system32>npm install --global --production windows-build-tools``
+-----------------------------------------------
+
 ```
 /
 > windows-build-tools@0.4.1 postinstall C:\Users\Rob\AppData\Roaming\npm\node_modules\windows-build-tools
@@ -31,8 +36,11 @@ windows-build-tools@0.4.1 C:\Users\Rob\AppData\Roaming\npm\node_modules\windows-
 └── nugget@2.0.0 (single-line-log@0.4.1, throttleit@0.0.2, minimist@1.2.0, progress-stream@1.2.0, pretty-bytes@1.0.4, request@2.74.0)
 
 ```
+Nog een npm install:
 
+-----------------------------------------------
 ``C:\WINDOWS\system32>npm install -g node-gyp``
+-----------------------------------------------
 
 ```
 C:\Users\Rob\AppData\Roaming\npm\node-gyp -> C:\Users\Rob\AppData\Roaming\npm\node_modules\node-gyp\bin\node-gyp.js
@@ -54,9 +62,11 @@ node-gyp@3.4.0 C:\Users\Rob\AppData\Roaming\npm\node_modules\node-gyp
 
 ```
 
-cd to meteor project en update meteor:
+cd naar meteor project en update meteor:
 
+-----------------------------------------------
 ``C:\Users\Rob\git\geoide-admin>meteor update``
+-----------------------------------------------
 
 ```
 Changes to your project's package version selections from updating the release:
@@ -113,5 +123,7 @@ To update one or more of these packages, pass their names to `meteor update`.
 * open command prompt (user)
 cd to meteor project en run meteor:
 
+-----------------------------------------------
 ``C:\Users\Rob\git\geoide-admin>meteor``
+-----------------------------------------------
 
