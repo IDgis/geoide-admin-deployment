@@ -6,6 +6,8 @@ Windows 10
 ## Stappen
 * Installeer MS Build Tools 2015
 https://www.microsoft.com/en-us/download/details.aspx?id=48159
+* Installeer nodejs, indien nodig (Zie C:\Program Files\nodejs)
+https://nodejs.org/en/download/
 * open administrator command terminal
 
 Voer een npm install uit:
