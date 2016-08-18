@@ -14,7 +14,8 @@ Geoide admin is gebouwd met meteorjs.
 6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``, dus niet deze foldernaam zelf) naar ``....\test\``
 7. start de service ``geoide-admin-test``
 8. configuratie staat in ``...\deployment\settings.json``
-aanpassingen hierin worden vanzelf door meteor verwerkt, geen restart van de service nodig
+aanpassingen hierin worden vanzelf door meteor verwerkt, geen restart van de service nodig.
+9. ``NB: wijzig in de settings.json de versie van het programma !!``
  
 
 ###Algemeen 
