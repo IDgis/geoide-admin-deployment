@@ -3,6 +3,20 @@
 Geoide admin is gebouwd met meteorjs.   
 
 ## Installatie
+
+### Korte instructie voor deployment van nieuwe versie op Windows server
+
+1. Maak (of zoek) een nieuwe release in Github (geoide-admin/code/releases)
+2. download de release zip
+3. stop de service ``geoide-admin-test``
+4. ga naar ``C:\geoide-admin\deployment\test``
+5. delete alles in deze folder
+6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``, dus niet deze foldernaam zelf) naar ``....\test\``
+7. start de service ``geoide-admin-test``
+8. configuratie staat in ``...\deployment\settings.json``
+aanpassingen hierin worden vanzelf door meteor verwerkt, geen restart van de service nodig
+ 
+
 ###Algemeen 
 DEV - ontwikkel machine  
 TEST / ACC / PROD - test, acceptatie, productie machines  
