@@ -36,10 +36,7 @@ Conventie voor naamgeving
     geoide-admin-*TAG*.zip   
    
 
-### Development machine DEV
-
 ### Windows TEST/ACC/PROD doel machine
-
 
 #### Voorbereiding
 Voor de volgende onderdelen dienen folders aangemaakt te worden.  
