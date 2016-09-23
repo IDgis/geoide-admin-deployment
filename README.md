@@ -1,24 +1,30 @@
 # Geoide admin
 ## meteorjs
 Geoide admin is gebouwd met meteorjs.   
+Zie link [Meteor](https://www.meteor.com/)
 
 ## Installatie
 
 ### Korte instructie voor deployment van nieuwe versie op Windows server
 
-1. Maak (of zoek) een nieuwe release in Github (geoide-admin/code/releases)
+1. Maak (of zoek) een nieuwe release in [Github](https://github.com/IDgis/geoide-admin/releases)
 2. download de release zip
 3. stop de service ``geoide-admin-test``
 4. ga naar ``C:\geoide-admin\deployment\test``
 5. delete alles in deze folder
-6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``, dus niet deze foldernaam zelf) naar ``....\test\``
-7. start de service ``geoide-admin-test``
-8. configuratie staat in ``...\deployment\settings.json``
+6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``, dus niet deze foldernaam zelf) naar ``C:\geoide-admin\deployment\test\``
+7. wijzig in ``C:\geoide-admin\deployment\settings.json`` de versie van het programma (met kladblok of Notepad++):  
+zet het github release nummer in regel:	``"version": "0.0.22-SNAPSHOT",``
+8. start de service ``geoide-admin-test`` en test in [browser](http://148.251.183.26:3010/)
+9. NB 1: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
+NB 2: applicatie logs zijn te vinden onder ``C:\geoide-admin\logs\``   
+NB 3: configuratie staat in ``C:\geoide-admin\deployment\settings.json``
 aanpassingen hierin worden vanzelf door meteor verwerkt, geen restart van de service nodig.
-9. ``NB: wijzig in de settings.json de versie van het programma !!``
  
 
-###Algemeen 
+## Instructie voor inrichten Windows machine voor Meteor en Mongo 
+Begrippen:  
+
 DEV - ontwikkel machine  
 TEST / ACC / PROD - test, acceptatie, productie machines  
 
@@ -28,6 +34,7 @@ Conventie voor naamgeving
   
   Github release artifact:       
     geoide-admin-*TAG*.zip   
+   
 
 ### Development machine DEV
 
