@@ -118,7 +118,7 @@ De onderdelen:
 
 ## Meerdere instanties van Geoide Composer naast elkaar gebruiken.
 Er kunnen meerdere instaties van Geoide Composer naast elkaar worden geinstalleerd en gebruikt.   
-Het belangrijkste onderscheid zit in de foldernamen, servicenamen en de toegekende meteor poorten.   
+Het belangrijkste onderscheid zit in de foldernamen, databasenamen, servicenamen en de toegekende meteor poorten.   
 
 ### folders
 Elke instantie van Geoide Composer wordt gekopieerd van uit de release zip naar een eigen folder.   
