@@ -19,7 +19,7 @@ Voor de volgende onderdelen dienen folders aangemaakt te worden.
 Het is mogelijk om meerdere instanties van Geoide Composer naast elkaar te installeren.   
 
 #### Installeren basis programma's   
- * Meteor - develop/runtime omgeving  
+  * Meteor - develop/runtime omgeving  
   [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.  
   Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
   ``C:\Users\USER\AppData\Local\.meteor\meteor.bat``   
