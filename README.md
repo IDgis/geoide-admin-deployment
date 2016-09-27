@@ -1,214 +1,208 @@
-# Geoide admin
-## meteorjs
-Geoide admin is gebouwd met meteorjs.   
-Zie link [Meteor](https://www.meteor.com/)
+# Geoide Composer
+
+Geoide Composer is gebouwd met meteorjs (Zie [Meteor](https://www.meteor.com/)).   
 
 ## Installatie
-
-### Korte instructie voor deployment van nieuwe versie op Windows server
-
-1. Maak (of zoek) een nieuwe release in [Github](https://github.com/IDgis/geoide-admin/releases)
-2. download de release zip
-3. stop de service ``geoide-admin-test``
-4. ga naar ``C:\geoide-admin\deployment\test``
-5. delete alles in deze folder
-6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``, dus niet deze foldernaam zelf) naar ``C:\geoide-admin\deployment\test\``
-7. wijzig in ``C:\geoide-admin\deployment\settings.json`` de versie van het programma (met kladblok of Notepad++):  
-zet het github release nummer in regel:	``"version": "0.0.22-SNAPSHOT",``
-8. start de service ``geoide-admin-test`` en test in [browser](http://148.251.183.26:3010/)
-9. NB 1: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
-NB 2: applicatie logs zijn te vinden onder ``C:\geoide-admin\logs\``   
-NB 3: configuratie staat in ``C:\geoide-admin\deployment\settings.json``
-aanpassingen hierin worden vanzelf door meteor verwerkt, geen restart van de service nodig.
- 
-
-## Instructie voor inrichten Windows machine voor Meteor en Mongo 
-Begrippen:  
-
-DEV - ontwikkel machine  
-TEST / ACC / PROD - test, acceptatie, productie machines  
-
-Conventie voor naamgeving   
-  Windows service: geoide-admin-SERVICE_NAAM       
-    bijv: geoide-admin-*test* geoide-admin-*klant1*      
-  
-  Github release artifact:       
-    geoide-admin-*TAG*.zip   
-   
-
-### Windows TEST/ACC/PROD doel machine
-
+### Instructie voor inrichten Windows machine voor Geoide Composer 
+De ingelogde gebruiker dient administratie rechten te hebben.   
 #### Voorbereiding
 Voor de volgende onderdelen dienen folders aangemaakt te worden.  
-    *Mongo data en logs*  
-    *Windows service manager*   
- 	*Geoide-admin deployment*  
+  *geoide-composer*   
+    Bijvoorbeeld ``C:\meteor\geoide-composer\`` of ``C:\Users\USER\geoide-composer\``    
+    maak hierin de subfolders ``meteor\``, ``conf\`` en ``logs\``   
+  *Windows service manager*      
+    Bijvoorbeeld ``C:\Programs\nssm\`` of ``C:\Users\USER\nssm\``     
+  *MongoDB*   
+    Bijvoorbeeld ``C:\MongoDB\``   
+    maak hierin de subfolders ``data\`` en ``logs\``   
 
-Zie folderstructuur hieronder  
+Het is mogelijk om meerdere instanties van Geoide Composer naast elkaar te installeren.   
 
 #### Installeren basis programma's   
- * meteor - develop/runtime omgeving  
- https://www.meteor.com/install  
- Volg instructies voor Windwos.  
- Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
- C:\Users\geoideadmin\AppData\Local\.meteor\meteor.bat   
- meteor.bat wordt gebruikt om applicatie op te starten in een node js omgeving en te verbinden met een Mongo database.   
+ * Meteor - develop/runtime omgeving  
+  [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.  
+  Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
+  ``C:\Users\USER\AppData\Local\.meteor\meteor.bat``   
+  meteor.bat wordt gebruikt om applicatie op te starten. Deze wordt door NSSM (zie hieronder) ingesteld om als Windows service te draaien.   
    
- * mongoDB - NoSQL database systeem   
- https://www.mongodb.com/download-center#community       
- Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
- Download msi for version 2.x.x (2.6.12) for Windows server R2   
- Full installation     
- maak een mongoDB service als volgt   
- In C:\Program Files\MongoDB 2.6 Standard\bin   
-   mongod --config  C:\MongoDB\mongo.config --install   
-   
- * NSSM - Windows Service Manager   
- https://nssm.cc/   
- Download nssm 2.24 (2014-08-31) zip bestand   
- Zip uitpakken in C:\Programs\   
-   service toevoegen met C:\Programs\nssm-2.24\win64\nssm.exe install   
-   Bekijk nssm-install-meteor-service.bat voor instructies   
- 
-#### Folder structuur na voorbereiding en installatie
-    
-    C:\Program Files   
-     |-- MongoDB 2.6 Standard 
-     
-    *Mongo data en logs*
-    Database en logfiles van mongo db
-    
-    C:\MongoDB
-     |   mongo.config
-     |-- data
-     |-- logs
-   
-    *Windwos service manager* 
-    Om een meteor applicatie als Windows service te kunnen installeren
-    
-    C:\Programs
-     |-- nssm-2.2.4
+  * mongoDB - NoSQL database systeem   
+  [Mongo](https://www.mongodb.com/download-center#community)       
+  Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
+  Download msi for version 2.x.x (2.6.12) for Windows server R2   
+  Full installation     
+  maak een mongoDB service als volgt   
+  In C:\Program Files\MongoDB 2.6 Standard\bin   
+     ``mongod --config  C:\MongoDB\mongo.config --install``   
+  Bij dit project is een voorbeeld mongo configuratie gegeven.
   
- 	*Geoide-admin deployment*
- 	De geoide-admin applicaties voor verschillende klanten en OTAP versies 
- 	
-    C:\geoide-admin
-     |
-     |-- deployment [tar.gz files]
-     |    |
-     |    |-- TEST [meteor build structure, from tar.gz]
-     |    |-- ACC
-     |
-     |-- logs [logs van service (stdout, stderr)]
-     |    |
-     |    |-- TEST
-     |    |-- ACC
-     |
-     |-- tools [scripts]
-     |     deploy-ga.bat
-     |     nssm-install-meteor-service.bat
-     
+  * NSSM - Windows Service Manager   
+  [Installatie](https://nssm.cc/)   
+  Download nssm 2.24 (2014-08-31) zip bestand    
+  Zip uitpakken in bijvoorbeeld C:\Programs\ of C:\Users\USER\nssm\   
+  Voeg een service toe door het volgende commando in een terminal uit te voeren:  
+  ``C:\Programs\nssm-2.24\win64\nssm.exe install``   
+  De belangrijkste commando's   
+  ``nssm help``  geeft een lijst met commando's   
+  ``nssm install`` start de gui om een nieuwe service aan te maken   
+  ``nssm edit <service-naam>`` start de gui om een service te wijzigen  
 
-#### Hulp programma's
-##### config
- * mongo configuratie   
-   *mongo.config* bevat de mongo data en log directories   
-   wordt gebruikt bij opstarten van mongo als service   
-
-##### scripts
- * specifieke meteor deployment als service starten   
+#### Geoide-Composer als service starten   
+   Start ``C:\Programs\nssm-2.24\win64\nssm.exe install`` in een OpdrachtPrompt en vul onderdelen in zoals in het voorbeeld hieronder.   
+   In onderstaande is aangegeven wat in de diverse tabbladen van de nssm GUI kan worden ingevuld:
+       
+	*service name* e.g. geoide-composer   
+	*Application\Path* De locatie van het nssm-install-meteor-service.bat script   
+	  C:\Users\USER\geoide-composer\meteor\scripts   
+	*Application\startup directory* meteor build e.g. C:\Users\USER\geoide-composer\meteor   
+	*Application\Arguments* METEOR_PORT  MONGO_DB_NAME  (MONGO_PORT_NR default 27017)   
+	  bijvoorbeeld 3010 geoide-composer    
+	*Details\display name* e.g. Geoide Composer   
+	*Details\description* naar believen in te vullen    
+	*Details\Startup type* e.g. manual     
+	*Login\Log on* Vul in de gebruiker die meteor heeft geinstalleerd, LocalSystem bijvoorbeeld werkt niet         
+	*IO\Output stdout* choose C:\Users\USER\geoide-composer\logs\out.log    
+	*IO\Error stderr* choose C:\Users\USER\geoide-composer\logs\err.log    
     
-   *nssm-install-meteor-service.bat*   
-   start C:\Programs\nssm-2.24\win64\nssm.exe install en vul onderdelen in zoals in het bat bestand aangegeven.   
+
+Om een bestaande service aan te passen:   
+``C:\Programs\nssm-2.24\win64\nssm.exe edit <service name>``
+
+#### Verificatie   
+  Kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
+  Als Geoide-Composer nog niet is gedeployed, voer dit dan eerst uit (zie hieronder).   
+  Start de service en ga met een browser naar http://localhost:METEOR_PORT   
 	
-   gebruik (TEST is voorbeeld naam voor omgeving of klant)    
-	*Application\Path* the path of the nssm-install-meteor-service.bat script   
-	*Application\startup directory* meteor build e.g. C:\geoide-admin\deployment\TEST\   
-	*Application\service name* e.g. geoide-admin-TEST   
-	*Application\Arguments* METEOR_PORT_  MONGO_DB_NAME_  (MONGO_PORT_NR default 27017)   
-	  e.g. 3010 geoide-admin-TEST    
-	*Details\display name* e.g. geoide-admin-TEST   
-	*Details\description*   
-	*Startup type* e.g. manual   
-	*Login\Log on* the User that installed meteor, LocalSystem does not work (see N.B. below)   
-	*IO\Output stdout* choose C:\geoide-admin\logs\TEST\out.log   
-	*IO\Error stderr* choose C:\geoide-admin\logs\TEST\err.log   
-    
-	verificatie   
-	kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
-	start de service en ga met een browser naar http://localhost:METEOR_PORT   
-	
-	N.B.   
-	**Waarschuwing**   
-	Omdat meteor lokaal voor de ingelogde user wordt geinstalleerd, werkt het niet als de service onder het LocalSystem account wordt gestart  
-	Oplossing:   
-	Neem in de klant installatie handleiding op dat de service via nssm met hetzelfde account werkt als het account waarmee meteor werd geinstalleerd.    
-	 
+### Instructie voor deployment van nieuwe versie van Geoide Composer
 
-#### build / deploy / run cyclus
-##### Algemeen
-   SERVICE = als in geoide-admin-SERVICE (test, klant-1-acc, ...)    
-   TAG = als in geoide-admin-TAG.tar.gz (bijv. *0.0.0* in geoide-admin-0.0.0.tar.gz)   
-
-##### build (DEV)    
-
-   Maak een release in github,    
-   gebruik een tag als "0.0.0"   	
-         
-##### deploy  (TEST/ACC/PROD)   
-   Een nieuwe release neerzetten voor een bestaande service.   
-      
-   Stop de service geoide-admin-SERVICE  
-   
-   Maak folder C:\geoide-admin\deployment\SERVICE\ leeg   
-   
-   Download de gewenste release op https://github.com/IDgis/geoide-admin/releases  als zip bestand.   
-   Kopieer dit naar C:\geoide-admin\deployment      
-   Open het bestand met 7z (7zFM.exe)   
-   Extract de inhoud (folder geoide-admin-TAG) naar C:\geoide-admin\deployment\SERVICE\   
-   
-   Kopieer met Windows Explorer de *inhoud* van folder geoide-admin-TAG naar de parent folder C:\geoide-admin\deployment\SERVICE   
-   De lege folder blijft staan   
-   
-  In deployment folder structuur:   
-  
-	   C:\geoide-admin
-	     |
-	     |-- deployment 
-	          |  geoide-admin-*TAG*.tar.gz
-	          |
-	          |-- *SERVICE_NAAM* 
-	                 |
-	                 |-- geoide-admin-TAG\ 
-	                 |...
-
-  
-  Start de service geoide-admin-SERVICE   
-  
-  N.B.   
-  De folder(naam) geoide-admin-TAG kan gebruikt worden om de tag versie zichtbaar te maken in het beheer programma.   
-    
- * run   
-  
-   meteor als service uitvoeren, dit is mogelijk met nssm en script "nssm-install-meteor-service.bat".   
-   
-   dit is eenmalig uit te voeren voor elke omgeving of klant    
-   
-   daarna kan de service gestopt of gestart worden op de standaard Windows wijze    
-   
- * database  (TEST/ACC/PROD)   
+1. Ga naar de link die is opgegeven voor de laatste Geoide-Composer release
+2. download de release zip
+3. stop de service ``geoide-composer``
+4. ga naar ``C:\Users\USER\geoide-composer\meteor``
+5. delete alles in deze folder
+6. kopieer inhoud van zip (onder ``geoide-admin-ReleaseNr``\*\*, dus niet deze foldernaam zelf) naar ``C:\Users\USER\geoide-composer\meteor``   
+\*\* De naam de van de zip is die van de het github project *geoide-admin*, de naam van het product is *Geoide Composer*.
+7. wijzig, indien nodig, in ``C:\Users\USER\geoide-composer\conf\settings.json`` de versie van het programma (met kladblok of Notepad++):  
+zet het github release nummer in regel:	``"version": "0.0.22-SNAPSHOT",``
+8. start de service ``geoide-composer`` 
+9. NB 1: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
+NB 2: applicatie logs zijn te vinden onder ``C:\Users\USER\geoide-composer\logs\``   
+NB 3: configuratie moet in  ``C:\Users\USER\geoide-composer\conf\settings.json`` staan   
+aanpassingen hierin worden vanzelf door meteor verwerkt, er is geen restart van de service nodig.   
+Zie ook paragraaf Configuratie in het geval er nog geen settings.json aanwezig is.   
  
-   backup / restore kan uitgevoerd worden met mongo commandos   
-     mongodump ...     
-     mongorestore ...     
-     
-       C:\Program Files\MongoDB 2.6 Standard\bin
-   
-### Linux
-Meteor Up mupx.   
+## Configuratie   
+ De configuratie van de geoide-composer staat in het bestand ``C:\Users\USER\geoide-composer\conf\settings.json``     
+ Dit bestand heeft de volgende structuur:
+ 
+    {
+      "version": "1.0-SNAPSHOT",
+      "viewer": {
+        "reloadConfigUrl": "http://httpbin.org/get"
+      },
+      "legendGraphic": {
+        "uploadFolder": "/tmp/.uploads/"
+      },
+      "requestcache": {
+        "delay" : 600000 
+      }
+    }
 
-Zie https://github.com/arunoda/meteor-up     
+Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.
+De onderdelen:
+  * version - dit versie nummer wordt getoond in de GUI van de Geoide-Composer  
+  * reloadConfigUrl - dit is een url van de Geoide-Viewer   
+    Geoide-Composer roept deze url aan telkens als er iets wordt opgeslagen.    
+  * delay - het interval in milliseconden waarin cache wordt geleegd.  
+   (alle requests naar externe services (WMS, WFS, TMS) worden gecached,     
+   regelmatig worden deze caches leeggemaakt om tussentijdse veranderingen in services mee te kunnen nemen)   
 
-### Galaxy
-Commerciele meteor cloud dienst   
+## Meerdere instanties van Geoide Composer naast elkaar gebruiken.
+Er kunnen meerdere instaties van Geoide Composer naast elkaar worden geinstalleerd en gebruikt.   
+Het belangrijkste onderscheid zit in de foldernamen, servicenamen en de toegekende meteor poorten.   
+
+### folders
+Elke instantie van Geoide Composer wordt gekopieerd van uit de release zip naar een eigen folder.   
+Voorbeelden:
+
+    C:\Users\USER\                           C:\meteor\                      
+     |-- geoide-composer-test\               |-- geoide-composer-test\         
+     |                                       |                                 
+     |-- geoide-composer-prod\               |-- geoide-composer-prod\         
+     |                                       |                                 
+     |  etc.                                 |  etc.                           
+                                                                               
+### databases
+Elke instantie van Geoide Composer krijgt een eigen database toegewezen.   
+Dit gebeurt bij het aanmaken van de service met nssm (tabblad Application\Arguments).   
+
+### services
+Voor elke instantie van Geoide Composer wordt een eigen service gemaakt met nssm.
+
+### poorten
+Elke instantie van Geoide Composer krijgt een eigen poort nummer waarmee meteor communiceert met de browser.   
+Voor deze poortnummers geldt het volgende:   
+1. de standaard meteor poort is 3000.   
+2. Intern gebruikt meteor ook poortnr+1, dus bijvoorbeeld 3001.   
+Gebruik deze standaard poorten bij voorkeur niet, maar ga uit van de reeks 3010, 3020, 3030 etc.   
+
+
+### url's
+Het onderscheid tussen meteor applicaties zit in het poort nummer van de url.  
+Dus bijvoorbeeld http://localhost:3010/ en http://localhost:3020/.   
+Externe urls kunnen dan zijn http://www.MijnBedrijf.nl:3010/, http://www.MijnBedrijf.nl:3020/.  
+Het gebruik van http://www.MijnBedrijf.nl/composer-1/ en http://www.MijnBedrijf.nl/composer-2/   
+blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebruik van Windows IIS.   
   
+
+### Folder structuur na voorbereiding en installatie
+  *Geoide-Composer*  
+  De geoide-composer applicatie    
+
+    C:\Users\USER\geoide-composer-test\
+     |-- meteor\ 
+     |     (inhoud van zip file)
+     |         \-- scripts\
+     |                 nssm-install-meteor-service.bat
+     |-- logs\  
+     |     out.log
+     |     err.log
+     |-- conf\
+     |     settings.json
+     |
+    C:\Users\USER\geoide-composer-prod\
+     |-- meteor\ 
+     |  etc.      
+
+  *Windows service manager*  
+  Om een meteor applicatie als Windows service te kunnen installeren   
+    
+    C:\Programs\
+     |-- nssm-2.2.4\
+  
+  *MongoDB*  
+  Beheer van databases van alle Geoide Composer instanties   
+    
+    C:\MongoDB\
+     |  mongo.config
+     |-- data\
+     |-- logs\
+     |
+  Bij dit project is een voorbeeld mongo configuratie gegeven.  
+  
+## Backup en restore van Geoide Composer gegevens
+
+Om de gegevens van Geoide-Composer te backuppen:  
+1. stop de service ``geoide-composer``  
+2. voer het commando ``mongodump`` uit voor de betreffende database   
+3. kopieer bestanden local.\* en meteor.\* naar een backup locatie  
+4. start de service ``geoide-composer``  
+
+Om de gegevens van Geoide-Composer te herstellen:  
+1. stop de service ``geoide-composer``  
+2. voer het commando ``mongorestore`` uit voor de betreffende database  
+3. start de service ``geoide-composer``  
+
+NB: Let op dat dezelfde gebruiker de backup en restore uitvoert.   
+
+
+   
