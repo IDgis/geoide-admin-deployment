@@ -1,0 +1,12 @@
+{
+	"version": "1.0",
+	"viewer": {
+		"reloadConfigUrl": "http://httpbin.org/get"
+	},
+	"legendGraphic": {
+    "uploadFolder": "/tmp/.uploads/"
+	},
+	"requestcache": {
+	  "delay" : 600000 
+	}
+}
