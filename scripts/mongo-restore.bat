@@ -16,7 +16,7 @@ goto ok
 :usage
 echo Gebruik:
 echo  mongo-restore.bat [folder van database backup] [database naam]
-echo  bijvoorbeeld mongo-restore.bat C:\backup\geoide-admin\geoide-admin1 geoide-admin1 
+echo  bijvoorbeeld mongo-restore.bat C:\backup\geoide-composer\geoide-composer1 geoide-composer1 
 echo  NB: de bestaande database wordt overschreven met de inhoud van de backup
 EXIT /B 1
 :ok

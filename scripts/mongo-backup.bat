@@ -16,7 +16,7 @@ goto ok
 :usage
 echo Gebruik:
 echo  mongo-backup.bat [folder voor database backup] [database naam]
-echo  bijvoorbeeld mongo-backup.bat C:\backup\geoide-admin geoide-admin1 
+echo  bijvoorbeeld mongo-backup.bat C:\backup\geoide-composer geoide-composer1 
 EXIT /B 1
 :ok
 mongodump --host localhost:27017 --db %MD_SOURCE_DB% --out %MD_DESTINATION_FOLDER%
