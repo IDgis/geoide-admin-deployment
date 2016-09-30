@@ -1,16 +1,25 @@
 @echo off
 rem ---------------------
 rem Mongo DB backup
-rem to be used in Windows
+rem can be used in Windows
 rem task scheduler
 rem ---------------------
-rem mongodump --host localhost --port 27017 --db geoide-admin4 --collection maps --out C:/tmp/mongo_dump/GeoideComposer
-rem ---------------------
 rem Mongo dump command 
-rem backups all databases 
-rem from the default Mongo instance 
-rem To restore use:
-rem mongorestore --host localhost --port 27017 C:/tmp/mongo_dump/GeoideComposer 
+rem dump a specific database 
 rem ---------------------
-mongodump --host localhost --port 27017 --out C:/tmp/mongo_dump/GeoideComposer
+rem Check parameters
+set MD_DESTINATION_FOLDER=%1
+set MD_SOURCE_DB=%2
+if "%~1"=="" goto usage
+if "%~2"=="" goto usage
+goto ok
+:usage
+echo Gebruik:
+echo  mongo-backup.bat [folder voor database backup] [database naam]
+echo  bijvoorbeeld mongo-backup.bat C:\backup\geoide-admin geoide-admin1 
+EXIT /B 1
+:ok
+mongodump --host localhost:27017 --db %MD_SOURCE_DB% --out %MD_DESTINATION_FOLDER%
 rem =====================
+rem Check
+dir %MD_DESTINATION_FOLDER%\%MD_SOURCE_DB%
