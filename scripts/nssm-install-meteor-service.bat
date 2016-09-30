@@ -45,5 +45,5 @@ set PORT=%METEOR_PORT_%
 set ROOT_URL=http://localhost:%PORT%
 @echo Start meteor, METEOR_URL=%ROOT_URL%
 @echo MONGO_URL=%MONGO_URL% 
-meteor --port %PORT% --settings ./settings.json
+meteor --port %PORT% --settings ../conf/settings.json
 
