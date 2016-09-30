@@ -2,7 +2,8 @@
 rem -------- INTRO -------
 rem This script can be run standalone 
 rem to start a meteor instance for an application:
-rem   Start it in the folder of the meteor application
+rem   Start it in the folder of the meteor application:
+rem   nssm-install-meteor-service.bat [Meteor poort] [Mongo database naam]
 rem or 
 rem as the script in a NSSM service installation:
 rem   Start 'nssm install' and fill in the fields described below
@@ -27,18 +28,22 @@ rem ^---^ NSSM ^---^
 rem -----------------
 rem  check arguments
 rem -----------------
-
-rem !!!!  T.B.D.  !!!!
-rem if METEOR_PORT_=="" exit 1
-rem if MONGO_DB_NAME_=="" exit 1
-rem if MONGO_PORT_=="" set MONGO_PORT_=27017
+rem if METEOR_PORT_=="" exit 
+if "%~1"=="" goto usage
+rem if MONGO_DB_NAME_=="" exit 
+if "%~2"=="" goto usage
+goto ok
+:usage
+echo Gebruik:
+echo  nssm-install-meteor-service.bat [Meteor poort] [Mongo database naam]
+echo  bijvoorbeeld nssm-install-meteor-service.bat 3010 geoide-composer-test 
+EXIT /B 1
+:ok
 rem -----------------
-rem default MONGO_PORT=27017
-rem METEOR_PORT=3010, 3020, ... (even numbers)
 set MONGO_URL=mongodb://localhost:%MONGO_PORT_%/%MONGO_DB_NAME_%
 set PORT=%METEOR_PORT_%
 set ROOT_URL=http://localhost:%PORT%
-@echo MONGO_URL=%MONGO_URL% METEOR_URL=%ROOT_URL%
-@echo Start meteor
+@echo Start meteor, METEOR_URL=%ROOT_URL%
+@echo MONGO_URL=%MONGO_URL% 
 meteor --port %PORT% --settings ./settings.json
 
