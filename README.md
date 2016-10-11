@@ -10,9 +10,12 @@ U kunt hier desgewenst een andere schijf gebruiken.
 Voor het openen en uitpakken van zip bestanden wordt het programma [7-zip](http://www.7-zip.org/) aangeraden.
  
 #### Installatieset van Geoide Composer
-Ga naar de link die is opgegeven voor de laatste Geoide Composer release en download de volgende zip bestanden.    
-- ``geoide-admin-[versieNr].zip **`` Geoide Composer programmatuur   
-- ``geoide-admin-deployment-[versieNr].zip **``  Geoide Composer configuratie en scripts   
+Er moeten 2 zip bestanden worden gedownload.   
+- [programmatuur](https://github.com/IDgis/geoide-admin/releases): ``geoide-admin-[versieNr].zip**`` Geoide Composer programmatuur   
+- [configuratie](https://github.com/IDgis/geoide-admin-deployment/releases): ``geoide-admin-deployment-[versieNr].zip**`` Geoide Composer configuratie, data en scripts   
+Download bij de opgegeven versie van de release, de zip bestanden onder:   
+  **Downloads** 
+       *Source code (zip)*    
 
 \*\* De naam de van de zip is die van de het github project *geoide-admin*, de naam van het product is *Geoide Composer*.
 
