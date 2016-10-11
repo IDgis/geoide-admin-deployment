@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "geoide-admin-test.maps" }, { "v" : 1, "unique" : true, "key" : { "text" : 1 }, "name" : "c2_text", "ns" : "geoide-admin-test.maps", "background" : true, "sparse" : false } ] }
