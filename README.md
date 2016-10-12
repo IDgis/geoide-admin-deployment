@@ -54,19 +54,20 @@ Meteor en Mongo worden eenmalig geinstalleerd voor alle instanties van Geoide Co
 
 #### Voorbereiding Geoide Composer
  
-   *Geoide Composer*   
-   1. Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`` naar een schijf.   
-      Het resultaat is dan bijvoorbeeld ``C:\geoide-composer``   
-      Hernoem deze folder als u meerdere instanties naast elkaar wilt gebruiken en kopieer de folder vervolgens nogmaals naar dezelfde schijf en hernoem:    
+*Geoide Composer*   
    
-     C:\
-     |
-     |-- geoide-composer-test\
-     |       \ ...
-     |
-     |-- geoide-composer-live\
-     |       \ ...
-     |
+Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`` naar een schijf.   
+  Het resultaat is dan bijvoorbeeld ``C:\geoide-composer``   
+  Hernoem deze folder als u meerdere instanties naast elkaar wilt gebruiken en kopieer de folder vervolgens nogmaals naar dezelfde schijf en hernoem:    
+   
+      C:\
+      |
+      |-- geoide-composer-test\
+      |       \ ...
+      |
+      |-- geoide-composer-live\
+      |       \ ...
+      |
 
 U kunt desgewenst ook alle instanties groeperen onder een hoofdfolder:   
    
