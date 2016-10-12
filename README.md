@@ -122,8 +122,7 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
 #### Geoide-Composer als service starten   
    Open een terminal (DOS prompt) en ga naar folder ``C:\geoide-composer-test\nssm\`` en 
    start batch bestand nssm-install-meteor-service.bat met de volgende parameters:   
-   ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``
-   Als het batch bestand klaar, is wordt de service gestart. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
+   ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``   
    
 ##### Toelichting:
 Parameters:   
@@ -132,26 +131,31 @@ Parameters:
 De service naam en database naam worden gelijk aan de programma naam   
 ``[meteor poort]``
 Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
-Elk meteor programma moet een uniek poort nummer krijgen   
+Elk meteor programma moet een uniek poort nummer krijgen.   
 *Voorbeelden:*   
-1. bij installatie op ``C:\geoide-composer-test\``
+1. bij installatie op ``C:\geoide-composer-test\`` :   
       ``nssm-install-meteor-service.bat  C:  geoide-composer-test  3010``   
    de service en database naam worden dan 'geoide-composer-test'   
-2. bij installatie op ``C:\geoide-composer\live\``
+2. bij installatie op ``C:\geoide-composer\live\`` :   
       ``nssm-install-meteor-service.bat  C:\geoide-composer  live  3020``   
    de service en database naam worden dan 'live'   
     
-Om een bestaande service aan te passen:   
-``C:\geoide-composer-test\nssm\nssm-2.24\win64\nssm.exe edit <service name>``
+De service wordt nog niet gestart!      
+Eerst moet de volgende aanpassing worden uitgevoerd:   
+1. Start Windows Service beheer op.     
+2. Ga naar de service ``geoide-composer-test`` en klik op eigenschappen   
+3. Ga naar tab Aanmelden en voer bij 'Dit account' de naam en wachtwoord in van de gebruiker die meteor heeft geinstalleerd.
+4. Druk op OK en start de service.   
+NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 
 #### Instructie voor update van Geoide Composer
 
 1. stop de service bijv. ``geoide-composer-test``
 2. ga naar ``C:\geoide-composer-test\meteor``
 3. delete alles in deze folder
-4. Open de programmatuur zip:  ``geoide-admin-[versieNr].zip``   
+4. Open de programmatuur zip: /tmp/.uploads/``geoide-admin-[versieNr].zip``   
 5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor``   
-6. start de service ``geoide-composer-test`` 
+6. start de service ``geoide-composer-test``   
 NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
  
 #### Configuratie   
@@ -160,7 +164,7 @@ NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
  
     {
       "viewer": {
-        "reloadConfigUrl": "http://httpbin.org/get"
+        "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
         "uploadFolder": "/tmp/.uploads/"
@@ -173,6 +177,7 @@ NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.
 De onderdelen:
   * reloadConfigUrl - dit is een url van de Geoide Viewer   
+    ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
@@ -182,7 +187,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
   Kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
   Start indien nodig de service en ga met een browser naar http://localhost:METEOR_PORT   
 	
-##### url's
+### url's
 Het onderscheid tussen meteor applicaties zit in het poort nummer van de url.  
 Dus bijvoorbeeld http://localhost:3010/ en http://localhost:3020/.   
 Externe urls kunnen dan zijn http://www.MijnBedrijf.nl:3010/, http://www.MijnBedrijf.nl:3020/.  
@@ -194,7 +199,7 @@ Zie voor gebruik en toelichting het [mongodb](https://github.com/IDgis/mongodb/t
 
 ### Installeren initieele dataset voor CRS in Geoide Composer 
 De database van Geoide composer kan voor gebruik worden gevuld. Er is data beschikbaar gemaakt voor CRS2 gebruikers.   
-1. stop de service ``geoide-composer-test``
+1. stop de service ``geoide-composer-test``   
 2. Voer het restore script uit van het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project:    
 ``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-admin-test_crs2 geoide-composer-test``   
 Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.
