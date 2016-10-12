@@ -87,8 +87,8 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
 #### Folder structuur na voorbereiding en installatie
   *Geoide-Composer*  
   De geoide-composer applicatie    
-
-     C:\geoide-composer-test\
+   
+    C:\geoide-composer-test\
      |    \-- conf\
      |        settings.json # configuratie van het meteor programma
      |    \-- data\         # data voor een initiele vulling van de database
