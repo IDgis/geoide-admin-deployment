@@ -28,28 +28,36 @@ Download bij de opgegeven versie van de release, de zip bestanden onder:
 
 #### Installeren basis programma's   
 Meteor en Mongo worden eenmalig geinstalleerd voor alle instanties van Geoide Composer. 
-#####  * Meteor - develop/runtime omgeving  
-  [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.  
+#####  *Meteor - develop/runtime omgeving*  
+  [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.   
+  Start InstallMeteor.exe als administrator.  
   Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
   ``C:\Users\USER\AppData\Local\.meteor\``   
-  Geoide Composer is gebouwd met meteor 1.4.  
+  Sla tijdens installatie de stap 'Create developer account' over.    
+  (Geoide Composer is gebouwd met meteor 1.4)  
    
-#####  * mongoDB - NoSQL database systeem   
+#####  *mongoDB - NoSQL database systeem*   
   [Mongo](https://www.mongodb.com/download-center#community)       
   Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
-  Download msi versie 2.6.12 for Windows server R2 en volg de instructies:  
+  Kies *Previous Releases*, versie 2.6.12 en download msi 'versie 2.6.12 for Windows server R2' en volg de instructies:   
+  Voer het MSI bestand uit als administrator en kies 'Complete Installation'.  
   ![Mongo 2.6. download](images/mongo26.png)   
+  
   Mongo wordt in een van de standaard Windows folders geinstalleerd C:\Program Files of C:\Program Files (x86)   
   
   Aanmaken van folder structuur en starten van MongoDB service.   
-   1. Kopieer de folder ``mongodb`` uit  ``mongo-[versieNr].zip`` naar een schijf.
+   1. Kopieer de folder ``mongodb`` uit ``mongo-[versieNr].zip`` naar een schijf.   
       Het resultaat is dan bijvoorbeeld ``C:\mongodb\``   
-   2. Maak een mongoDB service als volgt:   
+      (In de rest van de tekst wordt aangenomen dat de installatie in ``C:\mongodb\`` heeft plaatsgevonden)   
+   2. Maak een MongoDB service als volgt:   
     Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
     Voer uit:   
     ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  C:\mongodb\config\mongo.config --install``   
     Als schijf D: is gekozen als installatie schijf voor de database bestanden :   
     ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  D:\mongodb\config\mongoSchijfD.config --install``   
+   3. Open Windows Service beheer en start de service MongoDB.   
+    
+NB. Als een andere schijf of folder wordt gebruikt, dan moeten de paden in mongo.config worden aangepast.
 
 
 #### Voorbereiding Geoide Composer
@@ -84,7 +92,33 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
 1. Open de programmatuur zip:  ``geoide-admin-[versieNr].zip``   
 2. ga naar ``C:\geoide-composer-test\``
 3. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor\``   
-4. Pas de configuratie aan (zie Paragraaf Configuratie).  
+4. Pas de configuratie aan:   
+
+##### Configuratie   
+ De configuratie van de geoide-composer staat in het bestand ``C:\geoide-composer-test\conf\settings.json``     
+ Dit bestand heeft de volgende structuur:
+ 
+    {
+      "viewer": {
+        "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
+      },
+      "legendGraphic": {
+        "uploadFolder": "/tmp/.uploads/"
+      },
+      "requestcache": {
+        "delay" : 600000 
+      }
+    }
+
+Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.
+De onderdelen:
+  * reloadConfigUrl - dit is een url van de Geoide Viewer   
+    ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
+    Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
+    Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
+    
+NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
+
 
 #### Folder structuur na voorbereiding en installatie
   *Geoide-Composer*  
@@ -146,6 +180,7 @@ Eerst moet de volgende aanpassing worden uitgevoerd:
 2. Ga naar de service ``geoide-composer-test`` en klik op eigenschappen   
 3. Ga naar tab Aanmelden en voer bij 'Dit account' de naam en wachtwoord in van de gebruiker die meteor heeft geinstalleerd.
 4. Druk op OK en start de service.   
+
 NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 
 #### Instructie voor update van Geoide Composer
@@ -158,30 +193,6 @@ NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 6. start de service ``geoide-composer-test``   
 NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
  
-#### Configuratie   
- De configuratie van de geoide-composer staat in het bestand ``C:\geoide-composer-test\\conf\settings.json``     
- Dit bestand heeft de volgende structuur:
- 
-    {
-      "viewer": {
-        "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
-      },
-      "legendGraphic": {
-        "uploadFolder": "/tmp/.uploads/"
-      },
-      "requestcache": {
-        "delay" : 600000 
-      }
-    }
-
-Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.
-De onderdelen:
-  * reloadConfigUrl - dit is een url van de Geoide Viewer   
-    ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
-    Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
-    Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
-NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
-
 
 ## Verificatie   
   Kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
@@ -201,6 +212,8 @@ Zie voor gebruik en toelichting het [mongodb](https://github.com/IDgis/mongodb/t
 De database van Geoide composer kan voor gebruik worden gevuld. Er is data beschikbaar gemaakt voor CRS2 gebruikers.   
 1. stop de service ``geoide-composer-test``   
 2. Voer het restore script uit van het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project:    
+Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
+Voer het restore commando uit:   
 ``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-admin-test_crs2 geoide-composer-test``   
 Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.
 3. start de service ``geoide-composer-test`` 
