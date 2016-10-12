@@ -30,7 +30,7 @@ Download bij de opgegeven versie van de release, de zip bestanden onder:
   [Mongo](https://www.mongodb.com/download-center#community)       
   Centrale Mongo applicatie waar alle meteor applicaties mee kunnen verbinden   
   Download msi versie 2.6.12 for Windows server R2 en volg de instructies:  
-  ![Mongo 2.6. download](install/mongo26.png)   
+  ![Mongo 2.6. download](images/mongo26.png)   
   Mongo wordt in een van de standaard Windows folders geinstalleerd C:\Program Files of C:\Program Files (x86)   
   
 #####  * NSSM - Windows Service Manager   
@@ -105,16 +105,23 @@ Voor de volgende onderdelen dienen folders aangemaakt te worden.
   *MongoDB*  
   Beheer van gegevens van alle Geoide Composer instanties   
     
-    C:\MongoDB\
-     |  mongo.config
-     |-- data\
-     |-- logs\
-     |
+    C:\mongodb\
+     | README
+     |-- backup\                  # mogelijke lokatie voor backups
+     |-- config\
+     |     mongo.config           # Configuratie om MongoDB als service te starten
+     |     mongoSchijfD.config    # idem als folderstructuur op schijf D is geplaatst
+     |-- data\                    # centrale locatie voor alle databases van de mongo service
+     |-- images\                  # plaatjes voor README
+     |-- logs\                    # mongo log files
+     |-- scripts\                 # backup en restore scripts
+     |     mongo-backup.bat
+     |     mongo-restore.bat
 
 #### Geoide-Composer als service starten   
    Start ``C:\nssm-2.24\win64\nssm.exe install`` in een terminal en vul onderdelen in zoals in de voorbeelden hieronder:   
    In onderstaande is aangegeven wat in de diverse tabbladen van de nssm GUI kan worden ingevuld:
-   ![NSSM Application tab](install/nssm-1.png)   
+   ![NSSM Application tab](images/nssm-1.png)   
    
 *Service name* ``geoide-composer-test``   
 *Application\Path* De locatie van het nssm-install-meteor-service.bat script ``C:\meteor\nssm-install-meteor-service.bat``   
@@ -122,15 +129,15 @@ Voor de volgende onderdelen dienen folders aangemaakt te worden.
 *Application\Arguments* METEOR\_PORT  MONGO\_DB\_NAME    
   bijvoorbeeld ``3010 geoide-composer-test``    
   Zie ook _Meerdere instanties van Geoide Composer naast elkaar gebruiken_
-   ![NSSM Details tab](install/nssm-2.png)   
+   ![NSSM Details tab](images/nssm-2.png)   
 
 *Details\Display name* ``Geoide Composer TEST``   
 *Details\Description* naar believen in te vullen    
 *Details\Startup type* ``Manual``     
-   ![NSSM Login tab](install/nssm-3.png)   
+   ![NSSM Login tab](images/nssm-3.png)   
 
 *Login\Log on* Vul in de gebruiker die meteor en Geoide Composer heeft geinstalleerd, LocalSystem bijvoorbeeld werkt niet         
-   ![NSSM IO tab](install/nssm-4.png)   
+   ![NSSM IO tab](images/nssm-4.png)   
 
 *IO\Output stdout* ``C:\meteor\geoide-composer-test\logs\out.log``    
 *IO\Error stderr* ``C:\meteor\geoide-composer-test\logs\err.log``    

@@ -1,49 +1,51 @@
 @echo off
 rem -------- INTRO -------
-rem This script can be run standalone 
-rem to start a meteor instance for an application:
-rem   Start it in the folder of the meteor application:
-rem   nssm-install-meteor-service.bat [Meteor poort] [Mongo database naam]
-rem or 
-rem as the script in a NSSM service installation:
-rem   Start 'nssm install' and fill in the fields described below
-rem v---v NSSM v---v
-rem https://nssm.cc/
-rem nssm install (starts GUI with Admin rights)
-rem Application\Path this script
-rem Application\startup directory meteor build e.g. C:\geoide-admin\deployment\TEST\
-rem Application\service name e.g. geoide-admin-TEST
-rem Application\Arguments: METEOR_PORT_  MONGO_DB_NAME_  
-rem   e.g. 3010 geoide-admin-TEST  
-set METEOR_PORT_=%1
-set MONGO_DB_NAME_=%2
-set MONGO_PORT_=27017
-rem Details\display name e.g. geoide-admin-TEST
-rem Details\description
-rem Startup type e.g. manual
-rem Login\Log on as the User that installed meteor
-rem IO\Output stdout choose C:\geoide-admin\logs\TEST\out.log
-rem IO\Error stderr choose C:\geoide-admin\logs\TEST\err.log
-rem ^---^ NSSM ^---^
+rem This script can be run  
+rem to install a meteor service with NSSM (https://nssm.cc/)
+rem run it from the nssm command location (e.g. C:\Programs\nssm-2.24\win64) 
 rem -----------------
 rem  check arguments
 rem -----------------
-rem if METEOR_PORT_=="" exit 
+rem if METEOR_MAIN_FOLDER_=="" exit 
 if "%~1"=="" goto usage
-rem if MONGO_DB_NAME_=="" exit 
+rem if METEOR_PROGRAM_NAME_=="" exit 
 if "%~2"=="" goto usage
+rem if METEOR_PORT_=="" exit 
+if "%~3"=="" goto usage
 goto ok
 :usage
 echo Gebruik:
-echo  nssm-install-meteor-service.bat [Meteor poort] [Mongo database naam]
-echo  bijvoorbeeld nssm-install-meteor-service.bat 3010 geoide-composer-test 
+echo  nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]
+echo  Hier is de programma naam (2e argument) een subfolder van de (hoofd)lokatie (1e argument).
+echo  De service naam en database naam worden hetzelfde als de programma naam
+echo  Voorbeelden:
+echo  1. bij installatie op C:\geoide-composer-test\
+echo        nssm-install-meteor-service.bat  C:  geoide-composer-test  3010
+echo     de service en database naam is dan 'geoide-composer-test'
+echo  2. bij installatie op C:\geoide-composer\live\
+echo        nssm-install-meteor-service.bat  C:\geoide-composer  live  3020
+echo     de service en database naam is dan 'live'
+echo  Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.
+echo  Elk meteor programma krijgt een uniek poort nummer
 EXIT /B 1
 :ok
 rem -----------------
-set MONGO_URL=mongodb://localhost:%MONGO_PORT_%/%MONGO_DB_NAME_%
-set PORT=%METEOR_PORT_%
-set ROOT_URL=http://localhost:%PORT%
-@echo Start meteor, METEOR_URL=%ROOT_URL%
-@echo MONGO_URL=%MONGO_URL% 
-meteor --port %PORT% --settings ../conf/settings.json
+set METEOR_MAIN_FOLDER_=%1
+rem install folder = program name = service name = database name:
+set METEOR_PROGRAM_NAME_=%2 
+set MONGO_DB_NAME_=%2
+rem prefix needed for service name? e.g. meteor_%SERVICE_NAME_%
+set SERVICE_NAME_=%2
+set METEOR_PORT_=%3
 
+rem install service and set parameters
+nssm install %SERVICE_NAME_% %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\nssm\nssm-start-meteor-service.bat %METEOR_PORT_% %MONGO_DB_NAME_%  
+nssm set %SERVICE_NAME_% AppDirectory %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\meteor
+nssm set %SERVICE_NAME_% DisplayName %METEOR_PROGRAM_NAME_%
+nssm set %SERVICE_NAME_% Description "Meteor service %METEOR_PROGRAM_NAME_%"
+nssm set %SERVICE_NAME_% Start SERVICE_AUTO_START
+rem nssm set %SERVICE_NAME_% ObjectName LocalSystem
+nssm set %SERVICE_NAME_% AppStdout %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\out.log
+nssm set %SERVICE_NAME_% AppStderr %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\err.log
+rem Now start the service
+nssm start %SERVICE_NAME_% 
