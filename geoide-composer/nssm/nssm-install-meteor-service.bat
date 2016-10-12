@@ -37,15 +37,16 @@ set MONGO_DB_NAME_=%2
 rem prefix needed for service name? e.g. meteor_%SERVICE_NAME_%
 set SERVICE_NAME_=%2
 set METEOR_PORT_=%3
-
+rem programma lokatie nssm relatief t.o.v. deze bat file
+set NSSM_=nssm-2.24\win64\nssm.exe
 rem install service and set parameters
-nssm install %SERVICE_NAME_% %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\nssm\nssm-start-meteor-service.bat %METEOR_PORT_% %MONGO_DB_NAME_%  
-nssm set %SERVICE_NAME_% AppDirectory %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\meteor
-nssm set %SERVICE_NAME_% DisplayName %METEOR_PROGRAM_NAME_%
-nssm set %SERVICE_NAME_% Description "Meteor service %METEOR_PROGRAM_NAME_%"
-nssm set %SERVICE_NAME_% Start SERVICE_AUTO_START
-rem nssm set %SERVICE_NAME_% ObjectName LocalSystem
-nssm set %SERVICE_NAME_% AppStdout %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\out.log
-nssm set %SERVICE_NAME_% AppStderr %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\err.log
+%NSSM% install %SERVICE_NAME_% %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\nssm\nssm-start-meteor-service.bat %METEOR_PORT_% %MONGO_DB_NAME_%  
+%NSSM% set %SERVICE_NAME_% AppDirectory %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\meteor
+%NSSM% set %SERVICE_NAME_% DisplayName %METEOR_PROGRAM_NAME_%
+%NSSM% set %SERVICE_NAME_% Description "Meteor service %METEOR_PROGRAM_NAME_%"
+%NSSM% set %SERVICE_NAME_% Start SERVICE_AUTO_START
+rem %NSSM% set %SERVICE_NAME_% ObjectName LocalSystem
+%NSSM% set %SERVICE_NAME_% AppStdout %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\out.log
+%NSSM% set %SERVICE_NAME_% AppStderr %METEOR_MAIN_FOLDER_%\%METEOR_PROGRAM_NAME_%\logs\err.log
 rem Now start the service
-nssm start %SERVICE_NAME_% 
+%NSSM% start %SERVICE_NAME_% 
