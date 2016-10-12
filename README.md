@@ -12,7 +12,7 @@ Voor het openen en uitpakken van zip bestanden wordt het programma [7-zip](http:
 #### Installatieset van Geoide Composer (initieel)
 Er moeten 3 zip bestanden worden gedownload.   
 - [database](https://github.com/IDgis/mongodb/releases)   
-``mongodb-[versieNr].zip`` MongoDB configuratie, data lokatie en scripts
+``mongodb-[versieNr].zip`` MongoDB configuratie, data lokatie en scripts    
 Deze wordt eenmalig gebruikt voor de initeele MongoDB data structuur.
 - [configuratie](https://github.com/IDgis/geoide-admin-deployment/releases):   ``geoide-admin-deployment-[versieNr].zip**`` Geoide Composer configuratie, data en scripts      
 Deze wordt gebruikt bij de installatie van elke nieuwe Geoide Composer instantie.
@@ -195,14 +195,19 @@ NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
  
 
 ## Verificatie   
+### Geoide Composer programma
   Kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
   Start indien nodig de service en ga met een browser naar http://localhost:METEOR_PORT   
-	
+### Log bestanden 
+Log bestanden bevinden zich in    
+   Geoide Composer: ``C:\geoide-composer-test\logs``    
+   Mongo: ``C:\mongodb\logs`` 
+
 ### url's
 Het onderscheid tussen meteor applicaties zit in het poort nummer van de url.  
-Dus bijvoorbeeld http://localhost:3010/ en http://localhost:3020/.   
-Externe urls kunnen dan zijn http://www.MijnBedrijf.nl:3010/, http://www.MijnBedrijf.nl:3020/.  
-Het gebruik van http://www.MijnBedrijf.nl/composer-test/ en http://www.MijnBedrijf.nl/composer-live/   
+Dus bijvoorbeeld ``http://localhost:3010/`` en ``http://localhost:3020/``.   
+Externe urls kunnen dan zijn ``http://www.MijnBedrijf.nl:3010/``, ``http://www.MijnBedrijf.nl:3020/``.  
+Het gebruik als ``http://www.MijnBedrijf.nl/composer-test/`` en ``http://www.MijnBedrijf.nl/composer-live/``   
 blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebruik van Windows IIS.   
   
 ## Backup en restore van Geoide Composer gegevens
