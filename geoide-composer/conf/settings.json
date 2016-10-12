@@ -1,6 +1,6 @@
 {
 	"viewer": {
-		"reloadConfigUrl": "http://httpbin.org/get"
+		"reloadConfigUrl": "http://localhost:VIEWER-PORT/geoide/refresh"
 	},
 	"legendGraphic": {
     "uploadFolder": "/tmp/.uploads/"
