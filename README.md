@@ -9,10 +9,13 @@ In deze instructie wordt schijf C:\ als voorbeeld genomen om Geoide Composer in 
 U kunt hier desgewenst een andere schijf gebruiken.   
 Voor het openen en uitpakken van zip bestanden wordt het programma [7-zip](http://www.7-zip.org/) aangeraden.
  
-#### Installatieset van Geoide Composer
-Er moeten 2 zip bestanden worden gedownload.   
-- [programmatuur](https://github.com/IDgis/geoide-admin/releases): ``geoide-admin-[versieNr].zip**`` Geoide Composer programmatuur   
-- [configuratie](https://github.com/IDgis/geoide-admin-deployment/releases): ``geoide-admin-deployment-[versieNr].zip**`` Geoide Composer configuratie, data en scripts   
+#### Installatieset van Geoide Composer (initieel)
+Er moeten 3 zip bestanden worden gedownload.   
+- [database](https://github.com/IDgis/mongodb/releases)   
+``mongodb-[versieNr].zip`` MongoDB configuratie, data lokatie en scripts
+- [configuratie](https://github.com/IDgis/geoide-admin-deployment/releases):   ``geoide-admin-deployment-[versieNr].zip**`` Geoide Composer configuratie, data en scripts      
+- [programmatuur](https://github.com/IDgis/geoide-admin/releases):  
+``geoide-admin-[versieNr].zip**`` Geoide Composer programmatuur   
 Download bij de opgegeven versie van de release, de zip bestanden onder:   
   **Downloads** 
        *Source code (zip)*    
@@ -20,6 +23,7 @@ Download bij de opgegeven versie van de release, de zip bestanden onder:
 \*\* De naam de van de zip is die van de het github project *geoide-admin*, de naam van het product is *Geoide Composer*.
 
 #### Installeren basis programma's   
+Meteor en Mongo worden eenmalig geinstalleerd voor alle instanties van Geoide Composer. 
 #####  * Meteor - develop/runtime omgeving  
   [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.  
   Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
@@ -33,38 +37,42 @@ Download bij de opgegeven versie van de release, de zip bestanden onder:
   ![Mongo 2.6. download](images/mongo26.png)   
   Mongo wordt in een van de standaard Windows folders geinstalleerd C:\Program Files of C:\Program Files (x86)   
   
-#####  * NSSM - Windows Service Manager   
-  [Installatie bestand NSSM 2.24](https://nssm.cc/release/nssm-2.24.zip)   
-  Download nssm 2.24 (2014-08-31) zip bestand en kopieer de inhoud naar C:\    
-  NSSM staat dan in ``C:\nssm-2.24\`` (nssm.exe in subfolders win32\ en win64\)   
-  De belangrijkste commando's   
-  ``nssm help``  geeft een lijst met commando's   
-  ``nssm install`` start de gui om een nieuwe service aan te maken   
-  ``nssm edit <service-naam>`` start de gui om een service te wijzigen  
-  Zie gebruiksaanwzijzing verderop.
-    
 
 #### Voorbereiding
-Voor de volgende onderdelen dienen folders aangemaakt te worden. 
+Voorbereiding voor het aanmaken van initieele folder structuur. 
  
-   *Geoide Composer (NSSM script)*   
-   1. Maak een folder ``C:\meteor\``   
-   2. Open de configuratie zip: ``geoide-admin-deployment-[versieNr].zip``   
-   Kopieer scripts/nssm-install-meteor-service.bat naar ``C:\meteor\``.    
-
    *MongoDB*   
-   1. Maak een folder voor de mongo data en logging: ``C:\MongoDB\``   
-   2. Kopieer conf/mongo.config uit ``geoide-admin-deployment-[versieNr].zip`` naar deze folder.   
-
-   3. Pas mongo.config aan als de hoofd en/of subfolders andere namen hebben (bij D:\mongo\ ipv C:\MongoDB\)   
-
-   4. Maak de subfolders ``data\`` en ``logs\`` aan    
-   5. Kopieer folder data/dump/ uit ``geoide-admin-deployment-[versieNr].zip`` naar folder ``C:\MongoDB\data``.
-   6. Maak een mongoDB service als volgt:   
-    Open een terminal en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
+   1. Kopieer de folder ``mongodb`` uit  ``mongo-[versieNr].zip`` naar een schijf.
+      Het resultaat is dan bijvoorbeeld ``C:\mongodb\``   
+   2. Maak een mongoDB service als volgt:   
+    Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
     Voer uit:   
-    ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  C:\MongoDB\mongo.config --install``   
+    ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  C:\mongodb\config\mongo.config --install``   
+    Als schijf D: is gekozen als installatie schijf voor de database bestanden :   
+    ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  D:\mongodb\config\mongoSchijfD.config --install``   
 
+   *Geoide Composer*   
+   1. Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`` naar een schijf.
+      Het resultaat is dan bijvoorbeeld ``C:\geoide-composer``   
+      Hernoem deze folder als u meerdere instanties naast elkaar wilt gebruiken zoals: 
+   
+     C:\
+     |
+     |-- geoide-composer-test\
+     |       \ ...
+     |
+     |-- geoide-composer-live\
+     |       \ ...
+     |
+
+U kunt desgewenst ook alle instanties groeperen onder een hoofdfolder:   
+   
+     C:\geoide-composer
+     |     \ -- geoide-composer-test\
+     |            \ ...
+     |     \ -- geoide-composer-live\
+     |            \ ...
+     |
 
 #### Instructie voor initieel installeren van Geoide Composer
    Het is mogelijk om meerdere instanties van Geoide Composer naast elkaar te installeren.   
