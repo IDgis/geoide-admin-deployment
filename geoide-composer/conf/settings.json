@@ -3,7 +3,7 @@
 		"reloadConfigUrl": "http://localhost:VIEWER-PORT/geoide/refresh"
 	},
 	"legendGraphic": {
-    "uploadFolder": "/tmp/.uploads/"
+    	"uploadFolder": "/ProgramData/gc-upload/"
 	},
 	"requestcache": {
 	  "delay" : 600000 
