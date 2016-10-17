@@ -158,7 +158,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
      |     mongo-restore.bat
 
 #### Geoide-Composer als service starten   
-   Open een terminal (DOS prompt) en ga naar folder ``C:\geoide-composer-test\nssm\`` en 
+   Open een terminal (als administrator uitvoeren) en ga naar folder ``C:\geoide-composer-test\nssm\`` en 
    start batch bestand nssm-install-meteor-service.bat met de volgende parameters:   
    ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``   
    
@@ -182,7 +182,7 @@ De service wordt nog niet gestart!
 Eerst moet de volgende aanpassing worden uitgevoerd:   
 1. Start Windows Service beheer op.     
 2. Ga naar de service ``geoide-composer-test`` en klik op eigenschappen   
-3. Ga naar tab Aanmelden en voer bij 'Dit account' de naam en wachtwoord in van de gebruiker die meteor heeft geinstalleerd.
+3. Ga naar tab Aanmelden en voer bij 'Dit account' de naam en wachtwoord in van de gebruiker die meteor heeft geinstalleerd.   
 4. Druk op OK en start de service.   
 
 NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
