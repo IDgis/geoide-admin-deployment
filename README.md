@@ -230,8 +230,8 @@ Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam 
 ### LegendGraphic plaatjes overnemen van een andere Composer instantie
 Als een dataset van een andere Geoide Composer instantie wordt gebruikt of een initieele dataset is geinstalleerd (zie hierboven) moeten de urls van geüploade legendGraphic plaatjes nog worden aangepast.   
 Voorbeeld:   
-Er is een Composer instantie op poort 3000 geinstalleerd en hiermee zijn legendGraphic plaatjes geüpload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3000'.   
-Als de database later wordt gekopieerd naar een nieuwe Composer instantie (op poort 3010) dan moeten de urls van deze plaatjes, zoals ze in de database staan, worden aangepast ('localhost:3000' wordt dan 'localhost:3010').
+Er is een Composer instantie 'geoide-composer-test' op poort 3010 geinstalleerd en hiermee zijn legendGraphic plaatjes geüpload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3010'.   
+Als de database later wordt gekopieerd naar een nieuwe Composer instantie 'geoide-composer-live' op poort 3020, dan moeten de urls van deze plaatjes, zoals ze in de database staan, worden aangepast ('localhost:3010' wordt dan 'localhost:3020').
 
 Er staan twee scripts in de upload folder:   
 ``copy-legendgraphic-files.bat`` Kopieer de legendgraphic plaatjes van een andere instantie van Geoide Composer naar de huidige.   
@@ -253,6 +253,6 @@ Als er geen lokatie van het command beschikbaar is, start het volgende script da
 Voer het script ``fix-legendgraphic-url-in-db`` uit.   
 ``fix-legendgraphic-url-in-db.bat  [database]  [oude url]  [nieuwe url]  ``   
  Voorbeeld:   
- ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3000  localhost:3010``   
-In dit voorbeeld is 3000 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3010 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
+ ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3010  localhost:3020``   
+In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
