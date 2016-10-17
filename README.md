@@ -103,19 +103,22 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
         "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
-        "uploadFolder": "/tmp/.uploads/"
+        "uploadFolder": "C:/geoide-composer/upload/"
       },
       "requestcache": {
         "delay" : 600000 
       }
     }
 
-Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.
-De onderdelen:
+Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.   
+De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie:
   * reloadConfigUrl - dit is een url van de Geoide Viewer   
     ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
+  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
+    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\" 
+  
     
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
 
@@ -134,6 +137,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
      |    \-- meteor\       # meteor programma
      |       (inhoud van folder geoide-admin-[versieNr] uit zip file)
      |    \-- nssm\         # scripts voor het maken en starten van het meteor programma als Windows service  
+     |    \-- upload\       # lokatie voor geüploade legendGraphic plaatjes en scripts
      |
      |
 
@@ -223,4 +227,32 @@ Voer het restore commando uit:
 Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.
 3. start de service ``geoide-composer-test`` 
 
+### LegendGraphic plaatjes overnemen van een andere Composer instantie
+Als een dataset van een andere Geoide Composer instantie wordt gebruikt of een initieele dataset is geinstalleerd (zie hierboven) moeten de urls van geüploade legendGraphic plaatjes nog worden aangepast.   
+Voorbeeld:   
+Er is een Composer instantie op poort 3000 geinstalleerd en hiermee zijn legendGraphic plaatjes geüpload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3000'.   
+Als de database later wordt gekopieerd naar een nieuwe Composer instantie (op poort 3010) dan moeten de urls van deze plaatjes, zoals ze in de database staan, worden aangepast ('localhost:3000' wordt dan 'localhost:3010').
 
+Er staan twee scripts in de upload folder:   
+``copy-legendgraphic-files.bat`` Kopieer de legendgraphic plaatjes van een andere instantie van Geoide Composer naar de huidige.   
+``fix-legendgraphic-url-in-db.bat`` Herstel de url's naar de legendgraphic plaatjes in de database naar de juiste url van de huidige installatie.  
+ 
+#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Comkposer
+Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
+Voer het script ``copy-legendgraphic-files`` uit.   
+``copy-legendgraphic-files.bat [folder]``   
+ Voorbeeld:   
+ ``copy-legendgraphic-files.bat C:\geoide-composer-test\upload`` 
+
+#### Herstellen van url's van legendGraphic plaatjes
+Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
+Check of het ``mongo`` command beschikbaar is :   
+``C:\geoide-composer-live\upload> where mongo``.   
+Als er geen lokatie van het command beschikbaar is, start het volgende script dan vanuit de bin folder in de mongo installlatie (C:\Program Files\MongoDB 2.6 Standard\bin\):   
+``C:\Program Files\MongoDB 2.6 Standard\bin\> C:\geoide-composer-live\upload\fix-legendgraphic-url-in-db.bat``   
+Voer het script ``fix-legendgraphic-url-in-db`` uit.   
+``fix-legendgraphic-url-in-db.bat  [database]  [oude url]  [nieuwe url]  ``   
+ Voorbeeld:   
+ ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3000  localhost:3010``   
+In dit voorbeeld is 3000 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3010 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
+    
