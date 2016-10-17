@@ -26,5 +26,5 @@ EXIT /B 1
 :ok
 rem -----------------
 
-echo mongo %DB_NAME_% --eval "db.layers.find({}).forEach(function(e, i) {console.log("e", e;e.service_layers.forEach(function(e, i) {console.log("old LG", e.legendGraphic);e.legendGraphic = e.legendGraphic.replace("//%OLD_URL_%", "//%NEW_URL_%");console.log("new LG", e.legendGraphic);db.layers.save(e);});});"
-
+echo mongo db=%DB_NAME_%, replace '%OLD_URL_%' with '%NEW_URL_%'
+mongo %DB_NAME_% --eval "db.layers.find({}).forEach(function(e) {e.service_layers.forEach(function(sl){sl.legendGraphic=sl.legendGraphic.replace('%OLD_URL_%','%NEW_URL_%');});db.layers.save(e);});"
