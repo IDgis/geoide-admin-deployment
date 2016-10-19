@@ -103,7 +103,7 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
         "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
-        "uploadFolder": "C:/geoide-composer/upload/"
+        "uploadFolder": "C:/geoide-composer-test/upload/"
       },
       "requestcache": {
         "delay" : 600000 
@@ -117,9 +117,10 @@ De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
   * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
-    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\" 
+    De standaard waarde is: [Installatie folder]/[programma naam]/upload
+    bijvoorbeeld ``C:/geoide-composer-test/upload/``   
+    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\". 
   
-    
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
 
 
@@ -166,7 +167,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
 Parameters:   
 ``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
 ``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
-De service naam en database naam worden gelijk aan de programma naam   
+De *service naam* en *database naam* worden gelijk aan de *programma naam*   
 ``[meteor poort]``
 Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
 Elk meteor programma moet een uniek poort nummer krijgen.   
@@ -237,7 +238,7 @@ Er staan twee scripts in de upload folder:
 ``copy-legendgraphic-files.bat`` Kopieer de legendgraphic plaatjes van een andere instantie van Geoide Composer naar de huidige.   
 ``fix-legendgraphic-url-in-db.bat`` Herstel de url's naar de legendgraphic plaatjes in de database naar de juiste url van de huidige installatie.  
  
-#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Comkposer
+#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Composer
 Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
 Voer het script ``copy-legendgraphic-files`` uit.   
 ``copy-legendgraphic-files.bat [folder]``   
@@ -256,3 +257,18 @@ Voer het script ``fix-legendgraphic-url-in-db`` uit.
  ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3010  localhost:3020``   
 In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
+## Known issue's
+### Internet Explorer beveiligingswaarschuwing 
+Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligingswaarschuwing verschijnt.   
+Dit gebeurd dan in Internet Explorer, in Chrome of Firefox is het niet gezien.   
+Er moet dan een tekst aan de *Trusted Sites* worden toegevoegd. 
+
+Oplossing:   
+In Internet Explorer:   
+* Menu: Tools/Internet Options, tab *Security*
+ * Kies *Local Intranet*
+  * klik op *Sites* en voeg *about:blob* toe.
+  * probeer opnieuw een kaart te openen via de lijst met geconfigureerde kaarten. 
+  * voeg *about:internet* aan *Sites* toe als het probleem nog niet weg is.
+  
+  
