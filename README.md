@@ -103,7 +103,7 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
         "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
-        "uploadFolder": "C:/geoide-composer/upload/"
+        "uploadFolder": "C:/geoide-composer-test/upload/"
       },
       "requestcache": {
         "delay" : 600000 
@@ -117,9 +117,10 @@ De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
   * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
-    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\" 
+    De standaard waarde is: [Installatie folder]/[programma naam]/upload
+    bijvoorbeeld ``C:/geoide-composer-test/upload/``   
+    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\". 
   
-    
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
 
 
@@ -166,7 +167,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
 Parameters:   
 ``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
 ``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
-De service naam en database naam worden gelijk aan de programma naam   
+De *service naam* en *database naam* worden gelijk aan de *programma naam*   
 ``[meteor poort]``
 Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
 Elk meteor programma moet een uniek poort nummer krijgen.   
