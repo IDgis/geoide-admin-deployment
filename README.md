@@ -258,7 +258,8 @@ Voer het script ``fix-legendgraphic-url-in-db`` uit.
 In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
 ## Known issue's
-Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligings waarschuwing verschijnt.   
+### Internet Explorer beveiligingswaarschuwing 
+Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligingswaarschuwing verschijnt.   
 Dit gebeurd dan in Internet Explorer, in Chrome of Firefox is het niet gezien.   
 Er moet dan een tekst aan de *Trusted Sites* worden toegevoegd. 
 
