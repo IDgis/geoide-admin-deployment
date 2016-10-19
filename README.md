@@ -256,3 +256,17 @@ Voer het script ``fix-legendgraphic-url-in-db`` uit.
  ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3010  localhost:3020``   
 In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
+## Known issue's
+Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligings waarschuwing verschijnt.   
+Dit gebeurd dan in Internet Explorer, in Chrome of Firefox is het niet gezien.   
+Er moet dan een tekst aan de *Trusted Sites* worden toegevoegd. 
+
+Oplossing:   
+In Internet Explorer:   
+* Menu: Tools/Internet Options, tab *Security*
+ * Kies *Local Intranet*
+  * klik op *Sites* en voeg *about:blob* toe.
+  * probeer opnieuw een kaart te openen via de lijst met geconfigureerde kaarten. 
+  * voeg *about:internet* aan *Sites* toe als het probleem nog niet weg is.
+  
+  
