@@ -238,7 +238,7 @@ Er staan twee scripts in de upload folder:
 ``copy-legendgraphic-files.bat`` Kopieer de legendgraphic plaatjes van een andere instantie van Geoide Composer naar de huidige.   
 ``fix-legendgraphic-url-in-db.bat`` Herstel de url's naar de legendgraphic plaatjes in de database naar de juiste url van de huidige installatie.  
  
-#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Comkposer
+#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Composer
 Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
 Voer het script ``copy-legendgraphic-files`` uit.   
 ``copy-legendgraphic-files.bat [folder]``   
