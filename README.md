@@ -116,7 +116,7 @@ De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie
     ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
-  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
+  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geÃ¼pload, worden bewaard.   
     De standaard waarde is: [Installatie folder]/[programma naam]/upload
     bijvoorbeeld ``C:/geoide-composer-test/upload/``   
     NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\". 
@@ -138,7 +138,7 @@ NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen word
      |    \-- meteor\       # meteor programma
      |       (inhoud van folder geoide-admin-[versieNr] uit zip file)
      |    \-- nssm\         # scripts voor het maken en starten van het meteor programma als Windows service  
-     |    \-- upload\       # lokatie voor geüploade legendGraphic plaatjes en scripts
+     |    \-- upload\       # lokatie voor geÃ¼ploade legendGraphic plaatjes en scripts
      |
      |
 
@@ -229,9 +229,9 @@ Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam 
 3. start de service ``geoide-composer-test`` 
 
 ### LegendGraphic plaatjes overnemen van een andere Composer instantie
-Als een dataset van een andere Geoide Composer instantie wordt gebruikt of een initieele dataset is geinstalleerd (zie hierboven) moeten de urls van geüploade legendGraphic plaatjes nog worden aangepast.   
+Als een dataset van een andere Geoide Composer instantie wordt gebruikt of een initieele dataset is geinstalleerd (zie hierboven) moeten de urls van geÃ¼ploade legendGraphic plaatjes nog worden aangepast.   
 Voorbeeld:   
-Er is een Composer instantie 'geoide-composer-test' op poort 3010 geinstalleerd en hiermee zijn legendGraphic plaatjes geüpload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3010'.   
+Er is een Composer instantie 'geoide-composer-test' op poort 3010 geinstalleerd en hiermee zijn legendGraphic plaatjes geÃ¼pload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3010'.   
 Als de database later wordt gekopieerd naar een nieuwe Composer instantie 'geoide-composer-live' op poort 3020, dan moeten de urls van deze plaatjes, zoals ze in de database staan, worden aangepast ('localhost:3010' wordt dan 'localhost:3020').
 
 Er staan twee scripts in de upload folder:   
@@ -260,7 +260,7 @@ In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-co
 ## Known issue's
 ### Internet Explorer beveiligingswaarschuwing 
 Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligingswaarschuwing verschijnt.   
-Dit gebeurd dan in Internet Explorer, in Chrome of Firefox is het niet gezien.   
+Dit komt voor in Internet Explorer. In Chrome of Firefox is het niet gezien.   
 Er moet dan een tekst aan de *Trusted Sites* worden toegevoegd. 
 
 Oplossing:   
