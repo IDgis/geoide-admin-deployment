@@ -94,7 +94,7 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
 3. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor\``   
 4. Pas de configuratie aan:   
 
-##### Configuratie   
+##### <a name="configuratie"></a> Configuratie   
  De configuratie van de geoide-composer staat in het bestand ``C:\geoide-composer-test\conf\settings.json``     
  Dit bestand heeft de volgende structuur:
  
@@ -257,6 +257,33 @@ Voer het script ``fix-legendgraphic-url-in-db`` uit.
  ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3010  localhost:3020``   
 In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
+## Verbinden van Geoide-Viewer met Geoide-Composer
+### Lokatie van Geoide-Composer opgeven
+In de configuratie van Geoide-Viewer staan de url's waarmee de database van Geoide-Composer als json bestanden kunnen worden opgehaald.   
+Het configuratie bestand staat in ``crs-geoide.conf``, bijvoorbeeld:   
+``C:\geoide-crs-test\conf\crs-geoide.conf``
+
+In de 'resources' items staat de url van de Geoide-Composer:   
+
+      geoide.service.components{
+          mapProvider {              
+              resources.maps = "http://localhost:3020/json-gv-api-maps"
+              resources.services = "http://localhost:3020/json-gv-api-services"
+              resources.featureTypes = "http://localhost:3020/json-gv-api-featuretypes"
+              resources.serviceLayers = "http://localhost:3020/json-gv-api-servicelayers"
+              resources.layers = "http://localhost:3020/json-gv-api-layers"
+              configDir = null
+          }
+          imageProvider {
+              dir = null
+          }
+      }   
+   
+Pas hier de url aan (meestal alleen het poortnummer).
+
+Toelichting: deze urls worden aangeroepen, telkens als de Composer een refresh commando richting de Viewer geeft.   
+Zie ook onderdeel [configuratie](#configuratie).
+
 ## Known issue's
 ### Internet Explorer beveiligingswaarschuwing 
 Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligingswaarschuwing verschijnt.   
