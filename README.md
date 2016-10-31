@@ -193,7 +193,7 @@ NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 1. stop de service bijv. ``geoide-composer-test``
 2. ga naar ``C:\geoide-composer-test\meteor``
 3. delete alles in deze folder
-4. Open de programmatuur zip: /tmp/.uploads/``geoide-admin-[versieNr].zip``   
+4. Open de programmatuur zip: ``geoide-admin-[versieNr].zip``   
 5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor``   
 6. start de service ``geoide-composer-test``   
 NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
@@ -225,7 +225,7 @@ De database van Geoide composer kan voor gebruik worden gevuld. Er is data besch
 Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
 Voer het restore commando uit:   
 ``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-admin-test_crs2 geoide-composer-test``   
-Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.
+Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.   
 3. start de service ``geoide-composer-test`` 
 
 ### LegendGraphic plaatjes overnemen van een andere Composer instantie
@@ -249,7 +249,7 @@ Voer het script ``copy-legendgraphic-files`` uit.
 Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
 Check of het ``mongo`` command beschikbaar is :   
 ``C:\geoide-composer-live\upload> where mongo``.   
-Als er geen lokatie van het command beschikbaar is, start het volgende script dan vanuit de bin folder in de mongo installlatie (C:\Program Files\MongoDB 2.6 Standard\bin\):   
+Als er geen lokatie van het command beschikbaar is, start het volgende script dan vanuit de bin folder in de mongo installatie (C:\Program Files\MongoDB 2.6 Standard\bin\):   
 ``C:\Program Files\MongoDB 2.6 Standard\bin\> C:\geoide-composer-live\upload\fix-legendgraphic-url-in-db.bat``   
 Voer het script ``fix-legendgraphic-url-in-db`` uit.   
 ``fix-legendgraphic-url-in-db.bat  [database]  [oude url]  [nieuwe url]  ``   
