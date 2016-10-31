@@ -224,7 +224,7 @@ De database van Geoide composer kan voor gebruik worden gevuld. Er is data besch
 2. Voer het restore script uit van het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project:    
 Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
 Voer het restore commando uit:   
-``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-admin-test_crs2 geoide-composer-test``   
+``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-composer-basis_crs2 geoide-composer-test``   
 Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.   
 3. start de service ``geoide-composer-test`` 
 
