@@ -6,5 +6,5 @@ De database staat in de MongoDB data folder.
 ### Initiele database voor CRS installeren
 
 Voer het restore script uit (C:\mongodb\scripts):    
-``mongo-restore.bat C:\geoide-composer\data\geoide-admin-test_crs2 [database naam]``
+``mongo-restore.bat C:\geoide-composer\data\geoide-composer-basis_crs2 [database naam]``
 
