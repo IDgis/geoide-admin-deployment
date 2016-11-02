@@ -29,7 +29,6 @@ set MONGO_URL=mongodb://localhost:%MONGO_PORT_%/%MONGO_DB_NAME_%
 set PORT=%METEOR_PORT_%
 set ROOT_URL=http://localhost:%PORT%
 @echo Start meteor:
-meteor --version
 @echo METEOR_URL=%ROOT_URL%
 @echo MONGO_URL=%MONGO_URL% 
 meteor --port %PORT% --settings ../conf/settings.json
