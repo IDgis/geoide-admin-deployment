@@ -244,18 +244,6 @@ Voer het script ``copy-legendgraphic-files`` uit.
 ``copy-legendgraphic-files.bat [folder]``   
  Voorbeeld:   
  ``copy-legendgraphic-files.bat C:\geoide-composer-test\upload`` 
-
-#### Herstellen van url's van legendGraphic plaatjes
-Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
-Check of het ``mongo`` command beschikbaar is :   
-``C:\geoide-composer-live\upload> where mongo``.   
-Als er geen lokatie van het command beschikbaar is, start het volgende script dan vanuit de bin folder in de mongo installatie (C:\Program Files\MongoDB 2.6 Standard\bin\):   
-``C:\Program Files\MongoDB 2.6 Standard\bin\> C:\geoide-composer-live\upload\fix-legendgraphic-url-in-db.bat``   
-Voer het script ``fix-legendgraphic-url-in-db`` uit.   
-``fix-legendgraphic-url-in-db.bat  [database]  [oude url]  [nieuwe url]  ``   
- Voorbeeld:   
- ``fix-legendgraphic-url-in-db.bat  geoide-composer-live  localhost:3010  localhost:3020``   
-In dit voorbeeld is 3010 het poortnummer van de Composer instantie (bv geoide-composer-test) waar de database vandaan kwam en 3020 het poort nummer van de huidige Composer instantie (bv geoide-composer-live) .
     
 ## Verbinden van Geoide-Viewer met Geoide-Composer
 ### Lokatie van Geoide-Composer opgeven
