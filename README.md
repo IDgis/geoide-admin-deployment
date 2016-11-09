@@ -228,25 +228,13 @@ Voer het restore commando uit:
 Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.   
 3. start de service ``geoide-composer-test`` 
 
-### LegendGraphic plaatjes overnemen van een andere Composer instantie
-Als een dataset van een andere Geoide Composer instantie wordt gebruikt of een initieele dataset is geinstalleerd (zie hierboven) moeten de urls van geüploade legendGraphic plaatjes nog worden aangepast.   
-Voorbeeld:   
-Er is een Composer instantie 'geoide-composer-test' op poort 3010 geinstalleerd en hiermee zijn legendGraphic plaatjes geüpload van schijf. De url's van deze plaatjes beginnen dan 'http://localhost:3010'.   
-Als de database later wordt gekopieerd naar een nieuwe Composer instantie 'geoide-composer-live' op poort 3020, dan moeten de urls van deze plaatjes, zoals ze in de database staan, worden aangepast ('localhost:3010' wordt dan 'localhost:3020').
 
-Er staan twee scripts in de upload folder:   
-``copy-legendgraphic-files.bat`` Kopieer de legendgraphic plaatjes van een andere instantie van Geoide Composer naar de huidige.   
-``fix-legendgraphic-url-in-db.bat`` Herstel de url's naar de legendgraphic plaatjes in de database naar de juiste url van de huidige installatie.  
- 
-#### Kopieren van legendGraphic plaatjes van een andere instantie van Geoide Composer
-Open een terminal en ga naar de upload folder van de huidige Composer instantie.  
-Voer het script ``copy-legendgraphic-files`` uit.   
-``copy-legendgraphic-files.bat [folder]``   
- Voorbeeld:   
- ``copy-legendgraphic-files.bat C:\geoide-composer-test\upload`` 
     
 ## Verbinden van Geoide-Viewer met Geoide-Composer
 ### Lokatie van Geoide-Composer opgeven
+
+Wanneer de viewer ook wordt geupdated dan de instructie in de viewer update handleiding volgen en dit gedeelte overslaan
+
 In de configuratie van Geoide-Viewer staan de url's waarmee de database van Geoide-Composer als json bestanden kunnen worden opgehaald.   
 Het configuratie bestand staat in ``crs-geoide.conf``, bijvoorbeeld:   
 ``C:\geoide-crs-test\conf\crs-geoide.conf``
