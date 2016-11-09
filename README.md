@@ -77,14 +77,6 @@ Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`
       |       \ ...
       |
 
-U kunt desgewenst ook alle instanties groeperen onder een hoofdfolder:   
-   
-     C:\geoide-composer
-     |     \ -- geoide-composer-test\
-     |            \ ...
-     |     \ -- geoide-composer-live\
-     |            \ ...
-     |
 
 In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-composer-test\`` heeft plaatsgevonden.
 
@@ -100,10 +92,10 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
  
     {
       "viewer": {
-        "reloadConfigUrl": "http://localhost:<VIEWER-POORT>/geoide/refresh"
+        "reloadConfigUrl": "http://<VIEWER-SERVER>:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
-        "uploadFolder": "C:/geoide-composer-test/upload/"
+        "uploadFolder": "C:/geoide-crs-config/images/"
       },
       "requestcache": {
         "delay" : 600000 
@@ -117,8 +109,7 @@ De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
   * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
-    De standaard waarde is: [Installatie folder]/[programma naam]/upload
-    bijvoorbeeld ``C:/geoide-composer-test/upload/``   
+    Het is aan te bevelen om hier de locatie van de images folder van de viewer configuratie te gebruiken bijv   "C:/geoide-crs-config/images/"  
     NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\". 
   
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
