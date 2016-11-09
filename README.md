@@ -224,7 +224,7 @@ Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam 
 ## Verbinden van Geoide-Viewer met Geoide-Composer
 ### Lokatie van Geoide-Composer opgeven
 
-Wanneer de viewer ook wordt geupdated dan de instructie in de viewer update handleiding volgen en dit gedeelte overslaan
+N.B. Wanneer de viewer eveneens wordt geüpdated, dit gedeelte overslaan en de instructie in de viewer update handleiding volgen!
 
 In de configuratie van Geoide-Viewer staan de url's waarmee de database van Geoide-Composer als json bestanden kunnen worden opgehaald.   
 Het configuratie bestand staat in ``crs-geoide.conf``, bijvoorbeeld:   
