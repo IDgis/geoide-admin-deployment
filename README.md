@@ -255,7 +255,8 @@ blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebru
      |
  
     
-<a name="toelichting"></a>### Toelichting  Geoide-Composer als service starten:
+<a name="toelichting"></a>
+### Toelichting  Geoide-Composer als service starten:
 Parameters:   
 ``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
 ``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
@@ -272,7 +273,8 @@ Elk meteor programma moet een uniek poort nummer krijgen.
    de service en database naam worden dan 'live'    
    
    
-<a name="composer-update"></a>#### Instructie voor update van Geoide Composer
+<a name="composer-update"></a>
+### Instructie voor update van Geoide Composer
 
 1. stop de service bijv. ``geoide-composer``
 2. ga naar ``C:\geoide-composert\meteor``
