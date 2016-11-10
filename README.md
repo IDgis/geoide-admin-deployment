@@ -66,33 +66,21 @@ NB. Als een andere schijf of folder wordt gebruikt, dan moeten de paden in mongo
    
 Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`` naar een schijf.   
   Het resultaat is dan bijvoorbeeld ``C:\geoide-composer``   
-  Hernoem deze folder als u meerdere instanties naast elkaar wilt gebruiken en kopieer de folder vervolgens nogmaals naar dezelfde schijf en hernoem:    
-   
-      C:\
-      |
-      |-- geoide-composer-test\
-      |       \ ...
-      |
-      |-- geoide-composer-live\
-      |       \ ...
-      |
 
-
-In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-composer-test\`` heeft plaatsgevonden.
 
 #### Installeren van Geoide Composer
 1. Open de programmatuur zip:  ``geoide-admin-[versieNr].zip``   
-2. ga naar ``C:\geoide-composer-test\``
-3. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor\``   
+2. ga naar ``C:\geoide-composer\``
+3. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer\meteor\``   
 4. Pas de configuratie aan:   
 
-##### <a name="configuratie"></a> Configuratie   
- De configuratie van de geoide-composer staat in het bestand ``C:\geoide-composer-test\conf\settings.json``     
+##### Configuratie   
+ De configuratie van de geoide-composer staat in het bestand ``C:\geoide-composer\conf\settings.json``     
  Dit bestand heeft de volgende structuur:
  
     {
       "viewer": {
-        "reloadConfigUrl": "http://<VIEWER-SERVER>:<VIEWER-POORT>/geoide/refresh"
+        "reloadConfigUrl": "http://<VIEWER-HOST>:<VIEWER-POORT>/geoide/refresh"
       },
       "legendGraphic": {
         "uploadFolder": "C:/geoide-crs-config/images/"
@@ -104,131 +92,74 @@ In de volgende voorbeelden wordt aangenomen dat de installatie in ``C:\geoide-co
 
 Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.   
 De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie:
-  * reloadConfigUrl - dit is een url van de Geoide Viewer   
-    ``<VIEWER-POORT>`` is bijvoorbeeld 9000 en kan worden gevonden in de viewer configuratie   
+  * reloadConfigUrl - dit is de url van de Geoide Viewer.
+     ``<VIEWER-HOST>`` is de host naam waarop de Geoide viewer is geïnstalleerd   
+     ``<VIEWER-POORT>`` is de poort waarop de Geoide viewer is te benaderen (bijvoorbeeld 9000). Deze kan gevonden worden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
   * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geÃ¼pload, worden bewaard.   
-    Het is aan te bevelen om hier de locatie van de images folder van de viewer configuratie te gebruiken bijv   "C:/geoide-crs-config/images/"  
-    NB. gebruik hier "/" in plaats van de in Windows gebruikelijke "\". 
+    Het is aan te bevelen om hier de locatie van de images folder van de viewer configuratie te gebruiken bijv   "C:/geoide-crs-config/images/"  (gebruik hier "/" in plaats van de in Windows gebruikelijke "\"). 
   
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
 
 
-#### Folder structuur na voorbereiding en installatie
-  *Geoide-Composer*  
-  De geoide-composer applicatie    
-   
-    C:\geoide-composer-test\
-     |    \-- conf\
-     |        settings.json # configuratie van het meteor programma
-     |    \-- data\         # data voor een initiele vulling van de database
-     |    \-- logs\         # logging van het meteor programma
-     |        out.log
-     |        err.log
-     |    \-- meteor\       # meteor programma
-     |       (inhoud van folder geoide-admin-[versieNr] uit zip file)
-     |    \-- nssm\         # scripts voor het maken en starten van het meteor programma als Windows service  
-     |    \-- upload\       # lokatie voor geÃ¼ploade legendGraphic plaatjes en scripts
-     |
-     |
-
-  *MongoDB*  
-  Beheer van gegevens van alle Geoide Composer instanties   
-    
-    C:\mongodb\
-     | README
-     |-- backup\                  # mogelijke lokatie voor backups
-     |-- config\
-     |     mongo.config           # Configuratie om MongoDB als service te starten
-     |     mongoSchijfD.config    # idem als folderstructuur op schijf D is geplaatst
-     |-- data\                    # centrale locatie voor alle databases van de mongo service
-     |-- images\                  # plaatjes voor README
-     |-- logs\                    # mongo log files
-     |-- scripts\                 # backup en restore scripts
-     |     mongo-backup.bat
-     |     mongo-restore.bat
-
 #### Geoide-Composer als service starten   
-   Open een terminal (als administrator uitvoeren) en ga naar folder ``C:\geoide-composer-test\nssm\`` en 
+   Open een terminal (als administrator uitvoeren) en ga naar folder ``C:\geoide-composer\nssm\`` en 
    start batch bestand nssm-install-meteor-service.bat met de volgende parameters:   
    ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``   
+    ``nssm-install-meteor-service.bat C: geoide-composer 3010``
    
-##### Toelichting:
-Parameters:   
-``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
-``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
-De *service naam* en *database naam* worden gelijk aan de *programma naam*   
-``[meteor poort]``
-Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
-Elk meteor programma moet een uniek poort nummer krijgen.   
-*Voorbeelden:*   
-1. bij installatie op ``C:\geoide-composer-test\`` :   
-      ``nssm-install-meteor-service.bat  C:  geoide-composer-test  3010``   
-   de service en database naam worden dan 'geoide-composer-test'   
-2. bij installatie op ``C:\geoide-composer\live\`` :   
-      ``nssm-install-meteor-service.bat  C:\geoide-composer  live  3020``   
-   de service en database naam worden dan 'live'   
+Zie hier voor nadere [toelichting] (#toelichting).
     
-De service wordt nog niet gestart!      
-Eerst moet de volgende aanpassing worden uitgevoerd:   
+Voer de volgende aanpassingen door:  
 1. Start Windows Service beheer op.     
-2. Ga naar de service ``geoide-composer-test`` en klik op eigenschappen   
+2. Ga naar de service ``geoide-composer`` en klik op eigenschappen   
 3. Ga naar tab Aanmelden en voer bij 'Dit account' de naam en wachtwoord in van de gebruiker die meteor heeft geinstalleerd.   
 4. Druk op OK en start de service.   
 
 NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 
-#### Instructie voor update van Geoide Composer
+Zie hier voor een instructie voor [update] (#composer-update)
 
-1. stop de service bijv. ``geoide-composer-test``
-2. ga naar ``C:\geoide-composer-test\meteor``
-3. delete alles in deze folder
-4. Open de programmatuur zip: ``geoide-admin-[versieNr].zip``   
-5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer-test\meteor``   
-6. start de service ``geoide-composer-test``   
-NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
- 
-
-## Verificatie   
-### Geoide Composer programma
-  Kijk of de service onder de opgegeven naam is geinstalleerd (Windows beheer, services)   
-  Start indien nodig de service en ga met een browser naar http://localhost:METEOR_PORT   
-### Log bestanden 
-Log bestanden bevinden zich in    
-   Geoide Composer: ``C:\geoide-composer-test\logs``    
-   Mongo: ``C:\mongodb\logs`` 
-
-### url's
-Het onderscheid tussen meteor applicaties zit in het poort nummer van de url.  
-Dus bijvoorbeeld ``http://localhost:3010/`` en ``http://localhost:3020/``.   
-Externe urls kunnen dan zijn ``http://www.MijnBedrijf.nl:3010/``, ``http://www.MijnBedrijf.nl:3020/``.  
-Het gebruik als ``http://www.MijnBedrijf.nl/composer-test/`` en ``http://www.MijnBedrijf.nl/composer-live/``   
-blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebruik van Windows IIS.   
-  
-## Backup en restore van Geoide Composer gegevens
-Zie voor gebruik en toelichting het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project in Github.
 
 ### Installeren initieele dataset voor CRS in Geoide Composer 
 De database van Geoide composer kan voor gebruik worden gevuld. Er is data beschikbaar gemaakt voor CRS2 gebruikers.   
-1. stop de service ``geoide-composer-test``   
-2. Voer het restore script uit van het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project:    
-Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
+1. stop de service ``geoide-composer``   
+2. Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
 Voer het restore commando uit:   
-``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer-test\data\geoide-composer-basis_crs2 geoide-composer-test``   
-Waarbij geoide-composer-test (de database naam) gelijk is aan de programma naam en de service naam.   
-3. start de service ``geoide-composer-test`` 
+``C:\mongodb\scripts\mongo-restore.bat C:\geoide-composer\data\geoide-composer-basis_crs2 geoide-composer``   
+Waarbij geoide-composer (de database naam) gelijk is aan de programma naam en de service naam.   
+3. (her)start de service ``geoide-composer`` 
 
+
+## Verificatie   
+### Geoide Composer programma
+  Kijk of de service onder de opgegeven naam is geïnstalleerd (Windows beheer, services) en draait
+   Ga met een browser naar http://<Composer-host>:<Composer-port>   (bijv http://localhost:3020)
+   Maak een nieuwe gebruiker aan en log in, de Composer is nu klaar voor gebruik   
+
+   De installatie voor de composer is afgerond
+
+## Overige informatie
+
+
+### Log bestanden 
+Log bestanden bevinden zich in    
+   Geoide Composer: ``C:\geoide-composer\logs``    
+   Mongo: ``C:\mongodb\logs`` 
+
+  
+### Backup en restore van Geoide Composer gegevens
+Zie voor gebruik en toelichting het [mongodb](https://github.com/IDgis/mongodb/tree/master/mongodb/scripts) project in Github.
 
     
-## Verbinden van Geoide-Viewer met Geoide-Composer
-### Lokatie van Geoide-Composer opgeven
+### Verbinden van Geoide-Viewer met Geoide-Composer
+#### Lokatie van Geoide-Composer opgeven
 
-N.B. Wanneer de viewer eveneens wordt geüpdated, dit gedeelte overslaan en de instructie in de viewer update handleiding volgen!
 
 In de configuratie van Geoide-Viewer staan de url's waarmee de database van Geoide-Composer als json bestanden kunnen worden opgehaald.   
 Het configuratie bestand staat in ``crs-geoide.conf``, bijvoorbeeld:   
-``C:\geoide-crs-test\conf\crs-geoide.conf``
+``C:\geoide-crs\conf\crs-geoide.conf``
 
 In de 'resources' items staat de url van de Geoide-Composer:   
 
@@ -249,9 +180,8 @@ In de 'resources' items staat de url van de Geoide-Composer:
 Pas hier de url aan (meestal alleen het poortnummer).
 
 Toelichting: deze urls worden aangeroepen, telkens als de Composer een refresh commando richting de Viewer geeft.   
-Zie ook onderdeel [configuratie](#configuratie).
 
-## Known issue's
+
 ### Internet Explorer beveiligingswaarschuwing 
 Het kan voorkomen dat bij het openen van een kaart configuratie de kaart niet wordt getoond, of zelfs een pop-up met beveiligingswaarschuwing verschijnt.   
 Dit komt voor in Internet Explorer. In Chrome of Firefox is het niet gezien.   
@@ -266,3 +196,88 @@ In Internet Explorer:
   * voeg *about:internet* aan *Sites* toe als het probleem nog niet weg is.
   
   
+### Meerdere instanties Composer 
+   Als u meerdere instanties naast elkaar wilt gebruiken, kopieer de gehele geoide-composer folder en geef deze een andere naam:    
+    bijv:
+   
+      C:\
+      |
+      |-- geoide-composer-test\
+      |       \ ...
+      |
+      |-- geoide-composer-live\
+      |       \ ...
+      |
+      
+ ### url's 
+Het onderscheid tussen meteor applicaties zit in het poort nummer van de url.  
+Dus bijvoorbeeld ``http://localhost:3010/`` en ``http://localhost:3020/``.   
+Externe urls kunnen dan zijn ``http://www.MijnBedrijf.nl:3010/``, ``http://www.MijnBedrijf.nl:3020/``.  
+Het gebruik als ``http://www.MijnBedrijf.nl/composer-test/`` en ``http://www.MijnBedrijf.nl/composer-live/``   
+blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebruik van Windows IIS.        
+  
+### Folder structuur na voorbereiding en installatie
+  *Geoide-Composer*  
+  De geoide-composer applicatie    
+  
+   
+    C:\geoide-composer-test\
+     |    \-- conf\
+     |        settings.json # configuratie van het meteor programma
+     |    \-- data\         # data voor een initiele vulling van de database
+     |    \-- logs\         # logging van het meteor programma
+     |        out.log
+     |        err.log
+     |    \-- meteor\       # meteor programma
+     |       (inhoud van folder geoide-admin-[versieNr] uit zip file)
+     |    \-- nssm\         # scripts voor het maken en starten van het meteor programma als Windows service  
+     |    \-- upload\       # lokatie voor geÃ¼ploade legendGraphic plaatjes en scripts
+     |
+     |
+
+
+  *MongoDB*  
+  Beheer van gegevens van alle Geoide Composer instanties   
+  
+    
+    C:\mongodb\
+     | README
+     |-- backup\                  # mogelijke lokatie voor backups
+     |-- config\
+     |     mongo.config           # Configuratie om MongoDB als service te starten
+     |     mongoSchijfD.config    # idem als folderstructuur op schijf D is geplaatst
+     |-- data\                    # centrale locatie voor alle databases van de mongo service
+     |-- images\                  # plaatjes voor README
+     |-- logs\                    # mongo log files
+     |-- scripts\                 # backup en restore scripts
+     |     mongo-backup.bat
+     |     mongo-restore.bat
+     |
+ 
+    
+<a name="toelichting"></a>### Toelichting  Geoide-Composer als service starten:
+Parameters:   
+``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
+``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
+De *service naam* en *database naam* worden gelijk aan de *programma naam*   
+``[meteor poort]``
+Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
+Elk meteor programma moet een uniek poort nummer krijgen.   
+*Voorbeelden:*   
+1. bij installatie op ``C:\geoide-composer-test\`` :   
+      ``nssm-install-meteor-service.bat  C:  geoide-composer-test  3010``   
+   de service en database naam worden dan 'geoide-composer-test'   
+2. bij installatie op ``C:\geoide-composer\live\`` :   
+      ``nssm-install-meteor-service.bat  C:\geoide-composer  live  3020``   
+   de service en database naam worden dan 'live'    
+   
+   
+<a name="composer-update"></a>#### Instructie voor update van Geoide Composer
+
+1. stop de service bijv. ``geoide-composer``
+2. ga naar ``C:\geoide-composert\meteor``
+3. delete alles in deze folder
+4. Open de programmatuur zip: ``geoide-admin-[versieNr].zip``   
+5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer\meteor``   
+6. start de service ``geoide-composer``   
+NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
