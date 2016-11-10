@@ -137,8 +137,12 @@ Waarbij geoide-composer (de database naam) gelijk is aan de programma naam en de
   Kijk of de service onder de opgegeven naam is geïnstalleerd (Windows beheer, services) en draait
    Ga met een browser naar http://<Composer-host>:<Composer-port>   (bijv http://localhost:3020)
    Maak een nieuwe gebruiker aan en log in, de Composer is nu klaar voor gebruik   
-
-   De installatie voor de composer is afgerond
+   Controleer of de initieele dataset geladen is.
+   Ga naar services en update de url naar de interne wms en wfs service (service-crs-wms en service-crs-wfs)
+   Wijzig de host naam in de url naar de viewer-host naam
+   http://<host>:8080/crs-deegree-webservices/services/crs2_wfs
+   
+   De installatie voor de composer is hiermee afgerond
 
 ## Overige informatie
 
