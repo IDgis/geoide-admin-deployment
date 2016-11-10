@@ -119,7 +119,7 @@ Voer de volgende aanpassingen door:
 
 NB. Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen
 
-Zie hier voor een instructie voor [update] (#composer-update)
+Zie hier voor een instructie voor [update] van de Composer programmatuur (#composer-update)
 
 
 ### Installeren initieele dataset voor CRS in Geoide Composer 
@@ -257,6 +257,9 @@ blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebru
     
 <a name="toelichting"></a>
 ### Toelichting  Geoide-Composer als service starten:
+   Open een terminal (als administrator uitvoeren) en ga naar folder ``C:\geoide-composer\nssm\`` en 
+   start batch bestand nssm-install-meteor-service.bat met de volgende parameters:   
+   ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``
 Parameters:   
 ``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
 ``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
