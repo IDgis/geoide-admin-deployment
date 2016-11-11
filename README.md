@@ -259,16 +259,17 @@ blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebru
      |     mongo-restore.bat
      |
  
-    
+
 <a name="toelichting"></a>
+
 ### Toelichting  Geoide-Composer als service starten:
    Open een terminal (als administrator uitvoeren) en ga naar folder ``C:\geoide-composer\nssm\`` en 
    start batch bestand nssm-install-meteor-service.bat met de volgende parameters:   
-   ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``
+   ``nssm-install-meteor-service.bat [lokatie meteor installaties] [meteor programma naam] [meteor poort]``    
 Parameters:   
 ``[lokatie meteor installaties]`` hoofdlokatie van Geoide composer installaties bijv. ``C:``   
 ``[meteor programma naam]`` een subfolder van de hoofdlokatie bijv. ``geoide-composer-test``   
-De *service naam* en *database naam* worden gelijk aan de *programma naam*   
+  De *service naam* en *database naam* worden gelijk aan de *programma naam*   
 ``[meteor poort]``
 Kies meteor poorten uit de reeks 3010, 3020, 3030 etc.   
 Elk meteor programma moet een uniek poort nummer krijgen.   
@@ -282,6 +283,7 @@ Elk meteor programma moet een uniek poort nummer krijgen.
    
    
 <a name="composer-update"></a>
+
 ### Instructie voor update van Geoide Composer
 
 1. stop de service bijv. ``geoide-composer``
