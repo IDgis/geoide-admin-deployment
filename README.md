@@ -50,14 +50,14 @@ Meteor en Mongo worden eenmalig geinstalleerd voor alle instanties van Geoide Co
       Het resultaat is dan bijvoorbeeld ``C:\mongodb\``   
       (In de rest van de tekst wordt aangenomen dat de installatie in ``C:\mongodb\`` heeft plaatsgevonden)   
    2. Maak een MongoDB service als volgt:   
-    Open een terminal (DOS prompt) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
-    Voer uit:   
+    Open een terminal (DOS prompt)als Administrator (run as administrator) en ga naar C:\Program Files\MongoDB 2.6 Standard\bin\   
+    Als schijf C: is gekozen als installatie schijf voor de database bestanden, voer uit:   
     ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  C:\mongodb\config\mongo.config --install``   
     Als schijf D: is gekozen als installatie schijf voor de database bestanden :   
     ``C:\Program Files\MongoDB 2.6 Standard\bin> mongod --config  D:\mongodb\config\mongoSchijfD.config --install``   
    3. Open Windows Service beheer en start de service MongoDB.   
     
-NB. Als een andere schijf of folder wordt gebruikt, dan moeten de paden in mongo.config worden aangepast.
+NB. Als een andere schijf dan C of D of een andere folder wordt gebruikt, dan moeten de paden in mongo.config worden aangepast.
 
 
 #### Voorbereiding Geoide Composer
@@ -93,11 +93,11 @@ Kopieer de folder geoide-composer uit  ``geoide-admin-deployment-[versieNr].zip`
 Dit bestand kan gewijzigd worden met een teksteditor zoals Windows kladblok of NotePad++.   
 De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie:
   * reloadConfigUrl - dit is de url van de Geoide Viewer.
-     ``<VIEWER-HOST>`` is de host naam waarop de Geoide viewer is ge�nstalleerd   
+     ``<VIEWER-HOST>`` is de host naam waarop de Geoide viewer is geïnstalleerd   
      ``<VIEWER-POORT>`` is de poort waarop de Geoide viewer is te benaderen (bijvoorbeeld 9000). Deze kan gevonden worden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
-  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
+  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geÃ¼pload, worden bewaard.   
     Het is aan te bevelen om hier de locatie van de images folder van de viewer configuratie te gebruiken bijv   "C:/geoide-crs-config/images/"  (gebruik hier "/" in plaats van de in Windows gebruikelijke "\"). 
   
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
@@ -134,7 +134,7 @@ Waarbij geoide-composer (de database naam) gelijk is aan de programma naam en de
 
 ## Verificatie   
 ### Geoide Composer programma
-1. Kijk of de service onder de opgegeven naam is ge�nstalleerd (Windows beheer, services) en draait
+1. Kijk of de service onder de opgegeven naam is geïnstalleerd (Windows beheer, services) en draait
 2. Ga met een browser naar http://Composer-host:Composer-port
    (bijv http://localhost:3020)
 3. Maak een nieuwe gebruiker aan en log in, de Composer is nu klaar voor gebruik   
@@ -236,7 +236,7 @@ blijkt tot problemen te kunnen leiden in de applicatie, in ieder geval bij gebru
      |    \-- meteor\       # meteor programma
      |       (inhoud van folder geoide-admin-[versieNr] uit zip file)
      |    \-- nssm\         # scripts voor het maken en starten van het meteor programma als Windows service  
-     |    \-- upload\       # lokatie voor geüploade legendGraphic plaatjes en scripts
+     |    \-- upload\       # lokatie voor geÃ¼ploade legendGraphic plaatjes en scripts
      |
      |
 
