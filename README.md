@@ -97,7 +97,7 @@ De volgende onderdelen moeten aangepast worden aan de huidige Composer instantie
      ``<VIEWER-POORT>`` is de poort waarop de Geoide viewer is te benaderen (bijvoorbeeld 9000). Deze kan gevonden worden in de viewer configuratie   
     Geoide Composer roept deze url aan telkens als er iets wordt opgeslagen.    
     Hierdoor blijft de Viewer up-to-date bij wijzigingen met de Composer.   
-  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geÃ¼pload, worden bewaard.   
+  * uploadFolder - dit is de folder waar legendGraphic plaatjes, die met de Geoide Composer zijn geüpload, worden bewaard.   
     Het is aan te bevelen om hier de locatie van de images folder van de viewer configuratie te gebruiken bijv   "C:/geoide-crs-config/images/"  (gebruik hier "/" in plaats van de in Windows gebruikelijke "\"). 
   
 NB. het bestand kan gewijzigd worden terwijl de service draait, wijzigingen worden vanzelf overgenomen.
