@@ -29,12 +29,18 @@ Download bij de opgegeven versie van de release, de zip bestanden onder:
 #### Installeren basis programma's   
 Meteor en Mongo worden eenmalig geinstalleerd voor alle instanties van Geoide Composer. 
 #####  *Meteor - develop/runtime omgeving*  
+
+De standaard windows installatie installeert meteor altijd onder de gebruikers account waarmee je bent ingelogd. Dit betekent dat je de meteorservice ook alleen kunt draaien onder dit account. Dit is onwenselijk omdat na bijv het wijzigen van een wachtwoord van deze account de service niet meer automatisch opkomt na een herstart.
+
+  
   [Meteor Installatie](https://www.meteor.com/install), volg de instructies voor Windows.   
   Start InstallMeteor.exe als administrator.  
   Wordt lokaal geinstalleerd voor de ingelogde gebruiker:  
   ``C:\Users\USER\AppData\Local\.meteor\``   
   Sla tijdens installatie de stap 'Create developer account' over.    
   (Geoide Composer is gebouwd met meteor 1.4)  
+  
+  
    
 #####  *mongoDB - NoSQL database systeem*   
   [Mongo](https://www.mongodb.com/download-center#community)       
