@@ -295,7 +295,8 @@ Elk meteor programma moet een uniek poort nummer krijgen.
 1. stop de service bijv. ``geoide-composer``
 2. ga naar ``C:\geoide-composert\meteor``
 3. delete alles in deze folder
-4. Open de programmatuur zip: ``geoide-admin-[versieNr].zip``   
-5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer\meteor``   
-6. start de service ``geoide-composer``   
-NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen  
+4. Open de programmatuur zip: ``geoide-admin-[versieNr].zip``
+5. kopieer inhoud van zip (onder ``geoide-admin-[versieNr]``, dus niet deze foldernaam zelf) naar ``C:\geoide-composer\meteor``
+6. Ga in de command prompt naar ``C:\geoide-composert\meteor`` en voer daar de volgende regel uit: ``meteor npm install --save``
+7. start de service ``geoide-composer``
+NB: Het opstarten kan lang duren omdat meteor eerst de applicatie moet bouwen.
